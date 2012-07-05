@@ -1,0 +1,214 @@
+# produtos
+# funcionarios
+# tipos_apto
+# apartamentos
+# movimento
+# movimento_produtos
+# movimento_fluxo
+
+
+
+
+------------------------------------------
+# produtos
+
+codigo     - AUTOINCREMENT
+nome       - VARCHAR 50
+quantidade - INTEGER
+valor      - CURRENCY
+
+
+CREATE TABLE produtos (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (50) NOT NULL,
+quantidade INTEGER,
+valor CURRENCY
+)
+
+------------------------------------------
+
+
+------------------------------------------
+# funcionarios
+
+codigo        - AUTOINCREMENT
+nome          - VARCHAR (50)
+endereco      - VARCHAR (80)
+telefone      - VARCHAR (10)
+
+CREATE TABLE funcionarios (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (50) NOT NULL,
+endereco VARCHAR (80),
+telefone VARCHAR (10),
+)
+------------------------------------------
+
+
+------------------------------------------
+# tipos_apto
+
+codigo - AUTOINCREMENT
+nome   - VARCHAR (20)
+valor  - CURRENCY
+
+
+CREATE TABLE tipos_apto (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (20) NOT NULL,
+valor CURRENCY
+)
+
+------------------------------------------
+
+
+------------------------------------------
+# apartamentos
+
+codigo        - AUTOINCREMENT
+nome          - VARCHAR (10)
+cod_tipo_apto - INTEGER
+
+
+CREATE TABLE apartamentos (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR(10),
+cod_tipo_apto INTEGER
+)
+------------------------------------------
+
+
+------------------------------------------
+# movimento
+
+codigo   - AUTOINCREMENT
+situacao - LOGICAL
+cod_apto - INTEGER
+data     - DATE
+entrada  - TIME
+saida    - TIME
+consumo  - CURRENCY
+
+
+CREATE TABLE movimento (
+codigo COUNTER NOT NULL PRIMARY KEY,
+situacao BOOLEAN,
+cod_apto INTEGER,
+data_ent DATE,
+data_sai DATE,
+entrada TIME,
+saida TIME,
+consumo CURRENCY,
+veiculo VARCHAR (20)
+)
+------------------------------------------
+
+
+------------------------------------------
+# movimento_produtos
+
+codigo
+cod_movimento (chave estrangeira da tab mov_fluxo)
+cod_produto
+quantidade
+
+CREATE TABLE movimento_produtos (
+cod_movimento INTEGER,
+cod_fluxo INTEGER,
+num_produto INTEGER,
+cod_produto INTEGER,
+quantidade INTEGER,
+ativo BOOLEAN
+)
+------------------------------------------
+
+
+
+------------------------------------------
+# movimento_fluxo
+
+codigo
+cod_apto
+data
+entrada
+saida
+consumo
+desconto
+veiculo
+
+
+CREATE TABLE movimento_fluxo (
+codigo COUNTER NOT NULL PRIMARY KEY,
+cod_apto INTEGER,
+data_ent DATE,
+data_sai DATE,
+entrada TIME,
+saida TIME,
+consumo CURRENCY,
+desconto SINGLE,
+veiculo VARCHAR (20)
+)
+
+------------------------------------------
+
+
+
+
+CREATE TABLE produtos (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (50) NOT NULL,
+quantidade INTEGER,
+valor CURRENCY
+)
+
+CREATE TABLE funcionarios (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (50) NOT NULL,
+endereco VARCHAR (80),
+telefone VARCHAR (10)
+)
+
+CREATE TABLE tipos_apto (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR (20) NOT NULL,
+valor CURRENCY
+)
+
+CREATE TABLE apartamentos (
+codigo COUNTER NOT NULL PRIMARY KEY,
+nome VARCHAR(10),
+cod_tipo_apto INTEGER
+)
+
+CREATE TABLE movimento (
+codigo COUNTER NOT NULL PRIMARY KEY,
+situacao LOGICAL,
+cod_apto INTEGER,
+data_ent DATE,
+data_sai DATE,
+entrada TIME,
+saida TIME,
+consumo CURRENCY,
+veiculo VARCHAR (20)
+)
+
+CREATE TABLE movimento_produtos (
+cod_movimento INTEGER,
+cod_fluxo INTEGER,
+num_produto INTEGER,
+cod_produto INTEGER,
+quantidade INTEGER,
+ativo LOGICAL
+)
+
+CREATE TABLE movimento_fluxo (
+codigo COUNTER NOT NULL PRIMARY KEY,
+cod_apto INTEGER,
+data_ent DATE,
+data_sai DATE,
+entrada TIME,
+saida TIME,
+consumo CURRENCY,
+desconto SINGLE,
+veiculo VARCHAR (20)
+)
