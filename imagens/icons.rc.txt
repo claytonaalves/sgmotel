@@ -1,0 +1,10 @@
+bmp_ok BITMAP ok.bmp
+bmp_cancel BITMAP cancel.bmp
+bmp_cross BITMAP cross.bmp
+bmp_new BITMAP new.bmp
+bmp_edit BITMAP edit.bmp
+bmp_delete BITMAP delete.bmp
+bmp_print BITMAP print.bmp
+bmp_sigin BITMAP sign_in.bmp
+bmp_sigou BITMAP sign_out.bmp
+bmp_buy BITMAP buy.bmp

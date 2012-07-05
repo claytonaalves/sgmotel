@@ -1,0 +1,30 @@
+--------------------------------------------------
+           A.M. LOCACAO DE APARTAMENTOS
+
+--------------------------------------------------
+Doc/emi: 013619      10/03/2007      Dp: 8481000-2
+Vend...: GENIVALDO
+--------------------------------------------------
+Codigo.: 88888-0
+Cliente: * CONSUMIDOR
+Fantas.:
+Fone...:
+Enderec:
+Cidade.: ALTA FLORESTA                 UF: MT
+Veiculo: MOTO
+--------------------------------------------------
+Descricao                    Quant    Unit   Total
+--------------------------------------------------
+AGUA MINERAL                   1      2,00    2,00
+SUITE MOMENTO 2 HORAS          1     50,00   50,00
+
+
+--------------------------------------------------
+Apto..: 022 Hora Entrada: 21:11  Hora Saida: 21:26
+--------------------------------------------------
+Total bruto..........: 52,00
+Total desconto (0,00):  0,00
+Liquido a pagar .....: 52,00
+
+--------------------------------------------------
+           VCware - Sistemas de Automacao

@@ -1,0 +1,3 @@
+{TODO 5 -oClayton -cImplementacoes : Implementar mudanca de cor no grid qdo ficar desativado e quando voltar ativo}
+{TODO 5 -oClayton -cCorrecoes :Corrigir o problema de interface qdo pressiona ENTER sobre o botão NOVO...
+o componente que precisa receber o foco nao esta recebendo}

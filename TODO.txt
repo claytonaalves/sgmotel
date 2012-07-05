@@ -1,0 +1,63 @@
+Aplicativo de Controle de Hospedagem de Motéis
+
+IMPLEMENTADO
+
+- Venda ao Consumidor Final
+
+- Liberação de Suíte: Após o término da limpeza, o sistema
+	armazenará o nome da camareira e horário de término
+	do serviço, permitindo um controle avançado sobre o
+	serviço de camareiras.
+
+- Fechamento de Hospedagem: Quando seu cliente solicitar o fechamento
+	de sua conta, é possível a inclusão de novos itens à conta do
+	cliente (itens consumidos do frigobar durante a estadia, por
+	exemplo) períodos extra, controle de formas de pagamentos
+	(dinheiro, cheque, cartão de crédito). Quando a saída for
+	finalizada, a suíte passará automaticamente ao status de
+	“Em Limpeza”, ficando indisponível até que seja verificada a
+	liberação da mesma.
+
+- Produtos: Obtenha um controle total sob seu estoque, recebendo 
+	informações a respeito movimento de materiais, ordens de 
+	compra, movimento diário e estoque financeiro.
+
+- Funcionários: Cadastre seus funcionários e tenha controle sobre 
+	os serviços executados pelas camareiras e sobre as despesas 
+	com funcionários.
+
+- Tabela de Preços de Produtos: Completo sistema de Tabela de Preços,
+	permitindo controle sobre os preços praticados, permitindo 
+	preços de acordo com as políticas da casa (preços para dias 
+	normais e/ou para finais de semana).
+
+----------------------------------------------------------
+
+NAO IMPLEMENTADO
+
+- Requisições à copa: Controle completo de requisições a copa,
+	registrando-se as novas solicitações atreladas ao quarto,
+	com a possibilidade de impressão automatizada em impressora
+	instalada na copa (sem a necessidade de haver um computador
+	exclusivo para gerenciar estas impressões).
+
+- Vendas a funcionários: Controle sobre vendas a funcionários de
+	produtos da copa e/ou frigobar, armazenando-se em conta
+	pessoal do mesmo.
+
+- Fechamento de Caixa: A cada turno é possível ser efetuado o
+	fechamento de caixa, visualizando-se os resultados na
+	tela e imprimindo-se quando necessário.
+
+-  Fornecedores e Clientes: Controle de Fornecedores e clientes em
+	eficiente sistema de cadastramento, completamente interligado
+	com os demais módulos do sistema, possibilitando a busca da
+	informação necessária a qualquer momento.
+
+- Tabela de Preços das Suítes: Sistema de controle do valor das 
+	hospedagens completamente flexível, permitindo gerenciar 
+	preços por períodos diferenciados, como por exemplo: 
+	Segunda-feira, iniciando as 00:00 até Sexta Feira às 17:00,
+	com tabela especial para Sexta Feira das 17:01 até Domingo, 
+	23:59 horas.
+
