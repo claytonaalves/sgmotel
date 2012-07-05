@@ -1,9 +1,9 @@
 inherited frmLocalizarProdutos: TfrmLocalizarProdutos
-  Left = 695
-  Top = 114
-  Caption = 'Localizar Produto (Alterar esta janela)'
-  ClientHeight = 328
-  ClientWidth = 470
+  Left = 450
+  Top = 221
+  Caption = 'Localizar produto'
+  ClientHeight = 360
+  ClientWidth = 393
   Icon.Data = {
     0000010001001010000001001800680300001600000028000000100000002000
     0000010018000000000040030000000000000000000000000000000000000000
@@ -34,200 +34,183 @@ inherited frmLocalizarProdutos: TfrmLocalizarProdutos
     0000FE010000FC000000E0000000800000000000000000000000000000000003
     00000003000080030000E0030000F0030000F8070000FE1F0000FFFF0000}
   OnShow = FormShow
-  ExplicitWidth = 476
-  ExplicitHeight = 361
   PixelsPerInch = 96
   TextHeight = 13
-  object XiPanel1: TXiPanel [0]
-    Left = 0
-    Top = 0
-    Width = 473
-    Height = 329
-    ColorFace = clWhite
-    ColorGrad = 14344414
-    ColorLight = 8224125
-    ColorDark = 6447714
-    ColorScheme = csSilver
-    FillDirection = fdVertical
+  object Shape1: TShape [0]
+    Left = 5
+    Top = 221
+    Width = 382
+    Height = 35
+    Brush.Color = clSilver
+  end
+  object Shape3: TShape [1]
+    Left = 5
+    Top = 255
+    Width = 382
+    Height = 35
+  end
+  object Bevel2: TBevel [2]
+    Left = 5
+    Top = 297
+    Width = 383
+    Height = 3
+  end
+  object lblCodigo: TLabel [3]
+    Left = 14
+    Top = 227
+    Width = 59
+    Height = 18
+    Caption = 'Produto:'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Lucida Console'
+    Font.Height = -16
+    Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
+    Transparent = True
+  end
+  object lblQtde: TLabel [4]
+    Left = 35
+    Top = 263
+    Width = 38
+    Height = 18
+    Caption = 'Qtde:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblNome: TLabel [5]
+    Left = 106
+    Top = 231
+    Width = 15
+    Height = 19
+    Caption = '---'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Bevel1: TBevel [6]
+    Left = 5
+    Top = 212
+    Width = 383
+    Height = 3
+  end
+  inherited btnCancelar: TPngBitBtn
+    Left = 190
+    Top = 307
+    Width = 197
+    Height = 48
+    Font.Charset = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 3
+  end
+  inherited btnOk: TPngBitBtn
+    Left = 6
+    Top = 307
+    Width = 183
+    Height = 48
+    Caption = 'Adicionar'
+    Font.Charset = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Arial'
+    ParentFont = False
     TabOrder = 2
-    UseDockManager = True
-    object lbl04: TLabel
-      Left = 16
-      Top = 241
-      Width = 140
-      Height = 11
-      Caption = 'Quantidade a lan'#231'ar:'
-      Transparent = True
-    end
-    object Shape1: TShape
-      Left = 16
-      Top = 270
-      Width = 440
-      Height = 1
-      Pen.Color = 8224125
-    end
-    object grdMov_Produtos: TDBGrid
-      Left = 16
-      Top = 40
-      Width = 440
-      Height = 168
-      Ctl3D = False
-      DataSource = dsProdutos
-      Options = [dgTitles, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
-      ParentCtl3D = False
-      TabOrder = 0
-      TitleFont.Charset = ANSI_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Lucida Console'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'nome'
-          Title.Caption = 'Produto'
-          Width = 180
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'qtde'
-          Title.Caption = 'Qtd'
-          Width = 49
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'valor'
-          Title.Caption = 'Unt.'
-          Width = 60
-          Visible = True
-        end>
-    end
-    object edtLocalizar: TEdit
-      Left = 16
-      Top = 210
-      Width = 440
-      Height = 17
-      Ctl3D = False
-      ParentCtl3D = False
-      TabOrder = 1
-      OnChange = edtLocalizarChange
-      OnKeyPress = EditsKeyPress
-    end
-    object fldCodigo: TXiPanel
-      Left = 16
-      Top = 14
-      Width = 100
-      Height = 26
-      ColorFace = clWhite
-      ColorGrad = 14344414
-      ColorLight = clSilver
-      ColorDark = clSilver
-      ColorScheme = csCustom
-      FillDirection = fdVertical
-      Alignment = taLeftJustify
-      Caption = ' C'#243'digo'
-      TabOrder = 2
-      UseDockManager = True
-    end
-    object XiPanel3: TXiPanel
-      Left = 356
-      Top = 14
-      Width = 100
-      Height = 26
-      ColorFace = clWhite
-      ColorGrad = 14344414
-      ColorLight = clSilver
-      ColorDark = clSilver
-      ColorScheme = csCustom
-      FillDirection = fdVertical
-      Alignment = taLeftJustify
-      Caption = ' Valor'
-      TabOrder = 3
-      UseDockManager = True
-    end
-    object fldNome: TXiPanel
-      Tag = 1
-      Left = 115
-      Top = 14
-      Width = 242
-      Height = 26
-      ColorFace = clWhite
-      ColorGrad = clSilver
-      ColorLight = clSilver
-      ColorDark = clSilver
-      ColorScheme = csCustom
-      FillDirection = fdVertical
-      Alignment = taLeftJustify
-      Caption = ' Nome'
-      TabOrder = 4
-      UseDockManager = True
-    end
-    object AdvEdit3: TAdvEdit
-      Tag = 1
-      Left = 162
-      Top = 233
-      Width = 83
-      Height = 22
-      TabStop = False
-      BevelKind = bkTile
-      BorderStyle = bsNone
-      Color = clWhite
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clNavy
-      Font.Height = -12
-      Font.Name = 'Consolas'
-      Font.Style = [fsBold]
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 5
-      Text = '150'
-      Alignment = taRightJustify
-      ColorOnEnter = clBtnFace
-      TabOnEnter = True
-      ValueType = vtNumbers
-    end
   end
-  inherited btnOk: TBmsXPButton
-    Left = 296
-    Top = 285
-    Width = 80
-    Caption = 'Lan'#231'ar'
-    Enabled = False
-    ExplicitLeft = 296
-    ExplicitTop = 285
-    ExplicitWidth = 80
+  object grdProdutos: TDBGrid
+    Left = 5
+    Top = 6
+    Width = 383
+    Height = 199
+    Ctl3D = False
+    DataSource = dsProdutos
+    Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ParentCtl3D = False
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnDblClick = grdProdutosDblClick
+    OnKeyPress = grdProdutosKeyPress
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Produto'
+        Width = 212
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quantidade'
+        Title.Caption = 'Estoque'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'valor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Title.Caption = 'Valor R$'
+        Width = 87
+        Visible = True
+      end>
   end
-  inherited btnCancelar: TBmsXPButton
-    Left = 378
-    Top = 285
-    Width = 80
-    Caption = 'Fechar'
-    ExplicitLeft = 378
-    ExplicitTop = 285
-    ExplicitWidth = 80
-  end
-  object qryProdutos: TADOQuery
-    Connection = dmPrincipal.conn
-    CursorType = ctStatic
-    AfterOpen = qryProdutosAfterOpen
-    AfterScroll = qryProdutosAfterScroll
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT nome, qtde, valor FROM produtos')
-    Left = 272
-    Top = 104
+  object edtQtde: TEdit
+    Left = 90
+    Top = 266
+    Width = 233
+    Height = 17
+    BorderStyle = bsNone
+    Color = clWhite
+    Ctl3D = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    MaxLength = 3
+    ParentCtl3D = False
+    ParentFont = False
+    TabOrder = 1
+    OnChange = edtQtdeChange
+    OnKeyPress = EditsJustNumbers_KeyPress
   end
   object dsProdutos: TDataSource
-    DataSet = qryProdutos
-    Left = 240
-    Top = 104
+    DataSet = qProdutos
+    Left = 303
+    Top = 153
+  end
+  object qProdutos: TZReadOnlyQuery
+    Connection = dmPrincipal.zconn
+    AfterScroll = QueryAfterScroll
+    Active = True
+    SQL.Strings = (
+      'SELECT id, nome, quantidade, valor'
+      'FROM produtos'
+      'ORDER BY nome')
+    Params = <>
+    Left = 336
+    Top = 152
+  end
+  object Timer1: TTimer
+    Interval = 3000
+    OnTimer = Timer1Timer
+    Left = 16
+    Top = 168
   end
 end

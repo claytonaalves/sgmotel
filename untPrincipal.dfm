@@ -1,12 +1,12 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 133
-  Top = 9
+  Left = 303
+  Top = 111
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Sistema de Gerenciamento de Mot'#233'is - '
-  ClientHeight = 734
-  ClientWidth = 1016
-  Color = clWhite
+  Caption = 'Gerenciador - Motel Aquarius'
+  ClientHeight = 496
+  ClientWidth = 942
+  Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -5072,70 +5072,734 @@ object frmPrincipal: TfrmPrincipal
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     FFFFFFFFFFFF}
-  Menu = mnuPrincipal
+  Menu = MainMenu1
   OldCreateOrder = False
   Position = poScreenCenter
-  OnActivate = FormActivate
+  ShowHint = True
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Bevel1: TBevel
-    Left = 775
-    Top = 16
-    Width = 2
-    Height = 681
-  end
-  object Label4: TLabel
-    Left = 784
-    Top = 680
-    Width = 32
-    Height = 13
-    Caption = 'Label4'
-  end
-  object Panel1: TPanel
-    Left = 787
-    Top = 16
-    Width = 219
-    Height = 97
+  object panelResumo: TPanel
+    Left = 520
+    Top = 0
+    Width = 421
+    Height = 477
+    Align = alCustom
+    BevelOuter = bvNone
     BorderStyle = bsSingle
-    TabOrder = 0
-    object Label1: TLabel
-      Left = 84
-      Top = 20
-      Width = 53
-      Height = 13
-      Caption = 'Hora Atual:'
-      Transparent = True
+    Color = clTeal
+    TabOrder = 1
+    object Shape5: TShape
+      Left = 128
+      Top = 98
+      Width = 147
+      Height = 38
+      Brush.Color = 15790320
     end
-    object lblHora: TLabel
-      Left = 13
-      Top = 49
-      Width = 204
-      Height = 27
+    object Shape4: TShape
+      Left = 274
+      Top = 61
+      Width = 135
+      Height = 38
+      Brush.Color = 15790320
+    end
+    object Shape2: TShape
+      Left = 128
+      Top = 61
+      Width = 147
+      Height = 38
+      Brush.Color = 15790320
+    end
+    object Label15: TLabel
+      Left = 8
+      Top = 6
+      Width = 88
+      Height = 16
+      Align = alCustom
       Alignment = taCenter
-      AutoSize = False
-      Caption = 'lblHora'
+      Caption = 'Resumo geral'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clRed
-      Font.Height = -19
-      Font.Name = 'Arial Black'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
     end
+    object shpApto: TShape
+      Left = 8
+      Top = 24
+      Width = 121
+      Height = 112
+      Brush.Color = clMoneyGreen
+    end
+    object lbl04: TLabel
+      Left = 131
+      Top = 101
+      Width = 37
+      Height = 13
+      Caption = 'Ve'#237'culo'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object lblEntrada: TLabel
+      Left = 131
+      Top = 80
+      Width = 141
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lbl03: TLabel
+      Left = 131
+      Top = 64
+      Width = 37
+      Height = 13
+      Caption = 'Entrada'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label7: TLabel
+      Left = 277
+      Top = 64
+      Width = 59
+      Height = 13
+      Caption = 'Transcorrido'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object lblTranscorrido: TLabel
+      Left = 277
+      Top = 80
+      Width = 129
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblVeiculo: TLabel
+      Left = 131
+      Top = 118
+      Width = 141
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblApto: TLabel
+      Left = 11
+      Top = 44
+      Width = 115
+      Height = 62
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '--'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -64
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Label11: TLabel
+      Left = 11
+      Top = 30
+      Width = 115
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'Apartamento'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Label12: TLabel
+      Left = 8
+      Top = 144
+      Width = 109
+      Height = 16
+      Align = alCustom
+      Caption = 'Itens consumidos'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Shape6: TShape
+      Left = 184
+      Top = 360
+      Width = 225
+      Height = 29
+    end
+    object Label2: TLabel
+      Left = 190
+      Top = 367
+      Width = 93
+      Height = 16
+      Caption = 'Total consumo'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblConsumo: TLabel
+      Left = 298
+      Top = 364
+      Width = 67
+      Height = 22
+      Caption = 'R$ 0,00'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clNavy
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Shape3: TShape
+      Left = 274
+      Top = 98
+      Width = 135
+      Height = 38
+      Brush.Color = 15790320
+    end
+    object Label1: TLabel
+      Left = 277
+      Top = 101
+      Width = 49
+      Height = 13
+      Caption = 'Aberto por'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object lblTipo: TLabel
+      Left = 11
+      Top = 117
+      Width = 115
+      Height = 13
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Shape1: TShape
+      Left = 128
+      Top = 24
+      Width = 281
+      Height = 38
+      Brush.Color = 15790320
+    end
+    object Label8: TLabel
+      Left = 131
+      Top = 27
+      Width = 42
+      Height = 13
+      Caption = 'Situa'#231#227'o'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object lblSituacao: TLabel
+      Left = 131
+      Top = 43
+      Width = 275
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblAbertoPor: TLabel
+      Left = 277
+      Top = 118
+      Width = 129
+      Height = 16
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '---'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object gConsumo: TDBGrid
+      Left = 7
+      Top = 162
+      Width = 402
+      Height = 199
+      Color = 15790320
+      Ctl3D = False
+      DataSource = dsConsumo
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'produto'
+          Title.Caption = 'Produto'
+          Width = 204
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'quantidade'
+          Title.Caption = 'Qtde'
+          Width = 38
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'valor_unitario'
+          Title.Caption = 'Valor Unt.'
+          Width = 68
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'total'
+          Title.Caption = 'Total R$'
+          Width = 74
+          Visible = True
+        end>
+    end
+    object btMaisUm: TPngBitBtn
+      Left = 96
+      Top = 361
+      Width = 44
+      Height = 28
+      Hint = 'Mais um'
+      Caption = '1'
+      Enabled = False
+      TabOrder = 1
+      OnClick = btMaisUmClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000001974455874536F6674776172650041646F626520496D616765526561
+        647971C9653C000002BD4944415478DAA5935D4893511CC61FA79B2E5147989B
+        1F11393517A2859A14AD297993941012A951E285177D48924965305951525E04
+        F346F1A29412224548574E45243315A4462853E647687EA492B8ED7DA77BCF79
+        DF5E375C507A53FF73713817CFEFFCCFFF3C8F9F2008F89FF2FB1350D37D5B4D
+        795A4828BD422851119E82A364493C37897BB331FFE5D4AE809AEEF23C42F9DA
+        FD4A7564A22A05726908DCBC1B3F9CF318B4F562797565911052DA50D4D2FA17
+        C02BA68D69F1BAE08488644CDA27B0E49A07C77308938521421E8D810933C626
+        AD8CD859D1AB928E561FE0695779ACD876FF11F589A804650AFA16CD6019169C
+        4010141408415C9BFC2634A149F834DE838999A9058E106DDB8D9E690FA0BAB3
+        4CAF50EC33641DCAC5D0CA0738DD0C1886C19D0C83A7BB479FEFC1C5D8219106
+        2043A545536F3D180757D571B3EF8107F0D0546A4BD5E8E236256E4CADDAC477
+        737038ECA83E6DF400AEB55C4288420AC2132488B3D97430300DF74C9A6F7D8C
+        F700F46FAFB29947CFC9271C635873AEA1F2D8E31DBFACACB300A1720592C2D3
+        50F7AEC1D55B31B4C703A86C2B618FA764CBADF651B8E806AA526B760584C842
+        91AC4C87B1BDCED57F77C40BA86829B6A90F6AE2F84001DFEDB360B90D30CB76
+        345C78E3136E95C44F82F8F0C360D759B40C9A2607EF5BBC4F287B7D59BF2161
+        0D67532F6260AE0B1B94838CF7C393EC173E004F05C82401C88CCBC1B30E23D6
+        1DCEAA11FDA87788D79B0B62394AFB9511E151E9EA5318F8D6E91998F8B510E8
+        16428054E20F9D3A07668B0943E35F1744CF682D06EBB4CF48C5CFCF8B46228D
+        D12A65B036311B73EB33985F9B81C0F388D91B8B98D003786F69C7B0759411ED
+        5D248A7F1B69BBF2EBCFE4897EAFA5FE2452A739096558E4D6E598FB390BF397
+        5ED89DECA2282EDD16EF18A65C63965A841472BE3011314CD41326CA93668B61
+        7CF730FD4BFD0276F996F0D72273FA0000000049454E44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
+    object btMenosUm: TPngBitBtn
+      Left = 140
+      Top = 361
+      Width = 44
+      Height = 28
+      Hint = 'Menos um'
+      Caption = '1'
+      Enabled = False
+      TabOrder = 2
+      OnClick = btMenosUmClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000001974455874536F6674776172650041646F626520496D616765526561
+        647971C9653C000002954944415478DAA593ED4B536118C6AF33DBD636734C13
+        7599914E320B3243C9425351316C516964122E2A08C5FD0581627F4120414484
+        1A884403732A4A6AA010256192F992DB7CD964BE8496DACE1967E7799E8E130D
+        6B7EA9EBD3CD03D78FFBB9EFEBE61863F81F717F023C566B1223B44202A96462
+        20968282316991803653465A4E3C6F75ED0998AFB1964A9434441C37C5E9D2D2
+        C019F4805F4060D18BD5DE5E7C5F5D59208C584FBF68B3FD05D83413429A220B
+        7275BAB45320AE3160C9038822B87003B8230958B177C133EBF4512259325ABB
+        6D3B00774D4DA2DCF660544E96519B910ED2DF0E5EF0832301A8554A70948189
+        7E20351DDFBADF607EC9ED254CCA3EFFF2ED74103057555DAB3546D5475EBB0A
+        FABE0F84DF802008D82F0ABBE6437C02949979986C7C8A3525EA725E0D3C0C02
+        66AAEF3B620A734C4AC90F7E6E0AD2A80BA1A48AD543119300DF9A80F12F03CE
+        5CDBBBE420C059758F4FB852A2E1A646C0AFAF41FFE05148C0F24D33940603C2
+        CE9CC5C7F64621FFF590360870DCB5F0878BF3359CE313A8DC85A6F6C99E00EE
+        801EEACC7318EA782614B40D6F0126EFDC72C4A4269B344A02C93D03DEFB2374
+        6A140AA8534E62DD2F6262A4C759D4F979EB0B63B7CB6BD5FC46FDA1EB3720F6
+        74802A24043602BB07B8B96E850AFA8B660CDB1EE3A7C8D715778D6F0D71D452
+        9648146CF0A036C21899970BC16E87BC6B304240C0C96E2A23F621E2D265B8FB
+        BB30B73CEE251CCB2EE99C98DE09D27085B99432A9293A3C4A179D570871D605
+        D1E5021529D4C74C50C51F85A7CF8E9995291FE5A84536FF0ED2B63E9417C969
+        941AD4448C8B4FC992D7660CBEF35E379C6303E0897F41365BB7CD218F69B0EC
+        42129302155218AD6494C4CA0705B95E94EB662A492D25DD5FF73EA67FD12FCA
+        BE71F0E82977BB0000000049454E44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
+    object btAddItem: TPngBitBtn
+      Left = 8
+      Top = 361
+      Width = 44
+      Height = 28
+      Hint = 'Adiciona novo produto consumido'
+      Enabled = False
+      TabOrder = 3
+      OnClick = btAddItemClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000001974455874536F6674776172650041646F626520496D616765526561
+        647971C9653C000002804944415478DAA5937F48535114C7BF4F8D2411435CB2
+        32A83F06A565ADCC9559649192199A08C26060E082948C8C455B6014A9FDA184
+        902298E63268FD207F1088A58935CAF40F2987569A8AC96CB9724EACCD77DFBB
+        DDB7978E8260D185C3F79DF3EEFB9C73CF3B97A394E27F1627019A9EBB4A98E8
+        052AC688A208410488A482F44C4198FA4D8040288B8BFD653A55A20F60EE999D
+        C9D18447FD4BE64B96516F45DEA6501FA0A1FB2BCDDD138196B1469699B02C04
+        3C535EE065254C596CE99D31A90CA6A6F7A8D2C7713E405D97936AF7AE465868
+        4840D9173C04865B43A839152F036A9F7CA1BAFD9168EDFF161020735724CED4
+        0DE2E669B50CB8D1FE999E4889F201B4FBD6E09ED581DCE4E8E50F1EF63A90B3
+        DBEF3BDD1E9CABB7C17C3641065C7F6CA7F98714681F984590B4238803070A8E
+        39924FD89F086131B0BD2BD82963D7AD82E9F610EE9ED7C8808AD6297A32351A
+        9D832E64272AD0D237832CA67FAB60D4EE86B1D18607A6241950FE689216A429
+        D133EC02C7FD7EDE1056C28257C4A4BD039F1C5D58F8E182975F84EBFB0EB45E
+        2E950157EE4FD0A2F4B578353287236A059EBE71E2F036FF585435D7C345ACD8
+        199B80F5912A3CB3B5A0D7F60213A3CE4A1FA0C432468B3362D0F7D18D3F0A90
+        DA81A6761D8E1F4D03828390B9B908159D7A04B3EE589ADB3C3E80E9CE076AC8
+        DA808171370E6E8D42B7CD89942DFE0A322EAA51A02D447A5CFE72AC6DB01AA5
+        B557E5BB6030BFA3C6EC8DBFE67E69F6E9F25DD057AA712CFD00084418531B51
+        DE9187D0E095FE0A8A1B86AD8417B62F0A62184F04482610918DAF04E2E19EB7
+        2042D185A4F864A8946A8C4C0FE0E55B2BA6C6E7E41E04B23485CA6B4C0A9885
+        339B6756F3BA7AFAC24F6D84699C023FE9B60000000049454E44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
+    object btRemItem: TPngBitBtn
+      Left = 52
+      Top = 361
+      Width = 44
+      Height = 28
+      Hint = 'Remove o produto selecionado'
+      Enabled = False
+      TabOrder = 4
+      OnClick = btRemItemClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000001974455874536F6674776172650041646F626520496D616765526561
+        647971C9653C000002874944415478DAA5937F48934118C7BFAFAEB44628634B
+        2BC30A8448FB6194A6656292F60B121104412AC8A22223C5C8210A11F6874204
+        9185A533835646A814923F3073A1B84244532BDDC29AB99C6E4DCCE97BEF7BDD
+        FBBEE928088C0E8EEF3DCFDD7D9EE7EE9EE328A5F89FC64980EA57AE42265902
+        154344518420024452411A5310A6DE2E402094F94573716658940CA86A738EA7
+        45AFD0FE4BE422E3D06CE9F18DFE32A0A27582A6C704A0D6626091098B42C033
+        E5055E51C294F9E6E7F2638BA1AF7E8F1B59E19C0C286F71D08CDD8150FBAB16
+        157DDA439057D98F5B67B62880DB8DDF68E65E0DEACC938B021CDDA9C185F25E
+        DC3D1FA9006E368CD113095A199011B7128F4C76A4EF095AD8F0A4D38EB45D5E
+        DBE1F620F75E1FAA2EEE5000D79F8DD293893A34743BE123ADF0E1C081826386
+        6413F6122AE6035BBB849D72D39AE5D0DFEFC7C34BD10AA0B4EE0B3D951484E6
+        5E1752A374A8ED1A470AD3BF653034EA46BEA10F35FA580570EDE9083D9BBC0A
+        6D032E70DCEFE755B114A66745A8CD06F87556421CB380D306A323F0300AEE94
+        29802B8F3FD1EC43ABD1F1F13B0E46EAD0D4E3C0FEADDEB2682D2B81D65A8FB0
+        F814F86D08C74C4F23DEB5B7C039D89F2D030A8D169A7324045DC36EFC918074
+        1DE0AF4621FED8392C1B7E09D85E03010170A842F1B6D1649501FA071F685ECA
+        3A745BDDD8B7598BD63E071222BC1934272E45628911DCF6D4059FAB28186FDA
+        27A80CC8AB1AA4F9A9EB7FD5FD7CEDD385BFF039370231C949508F3CC7EC8C1D
+        3F1860CAED8B8161D864404EC58089F0C2B6394154F34480D40522B2F295403C
+        62EC3588F3BC40A8668E5DAA0D53E30416BB8A128F58C02DF63B9BD2D75E9E9E
+        FC7ADA57E042055F6A63BBCA0E3491E29F738A71A00824EE120000000049454E
+        44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
+    object btnAbertura: TPngBitBtn
+      Left = 8
+      Top = 395
+      Width = 200
+      Height = 69
+      Caption = 'Abertura'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnClick = btnAberturaClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        61000000017352474200AECE1CE900000006624B474400FF00FF00FFA0BDA793
+        000000097048597300000EC400000EC401952B0E1B0000000774494D45000000
+        000000000973942E000002A84944415478DA9D935D48536118C7FFEF498FB639
+        2F445171F9D192A0D208342B45E6C79206463182091266120605DD098220DD04
+        7513D18DD907E1A5175D86742351D107DA1CB6D4CC39B7996E3AA7D3ED6C3BEF
+        797BCFA936BDAB0E1C9E97F79CFFEF7D9EE7FF3E04FFF14C3FBEC91485825219
+        E45F84AEA7B734A1585004F7E217E409621A303838C83F2AF8F3524A53B1FB18
+        830005627E11722A0E41A10A9CE32F90AB903460606080198D466D4D08D9134F
+        09D3C8AFA957779088AE8326E3989D780B5D625709FDFDFDACACAC0CE3D218CC
+        FBDB20102105A8511C28E080446405544EF01D01738EF71063521AD0D7D7C74C
+        261346C323D02107ED79B614E078FC030A6B1B10DFFA014503107C734E8044B6
+        40DA1FB632B5262AF3AECA0ACA4BCA21F375C01B84ADA443031CDD7E8DE2DA46
+        489BFE5F193082EFAE29D0F01A88F57E13BBD46C43927757E6B6C88A8C244DE2
+        936302215F181DA6CBA8DC78052307C4C23E305942614100EFDEAC430AAE829C
+        BDD7C86C2D171192424870A12A5653CC14323139E940F6861EBD3AA0F4A419B1
+        9007067D08A5C6158CBD8C21E40D8034DFA967175ACF6BC2E4EFD3D52C54F196
+        7F1BDD55D750EC1D45455D13A2EB1E4091909B1B87736A0561DF0248E3ED3AA6
+        D62F27A9D607A3B1840328367D11F454F76A8DCC9B1F41E5E91644D7DCDC42DE
+        03EE90DFB784A0672EED42575717339BCD78EE7A0289FB7CFDC48DD45D30B81E
+        E1F0190B76D61639805B4732E05FF663D5ED4A033A3B3B99C562C133E730AE54
+        F74010F6A500A2E3018ED4B76127B80085C355C0726015CBF3CE34C06EB733AB
+        D59A12EDB98D1FEFA2AAE19CF6B322F31EC5A3F0B8BFC23BF71964686888CDCC
+        CCC0EBF5EEB9FFBBA3FDE022F40603B2B2F510B375C814B310D90E636976F2EF
+        A671F8EA01A68E2EE50EA9519D482143D466E22705CF6D1B9BCFB8C000000000
+        49454E44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
+    object btnFechamento: TPngBitBtn
+      Left = 209
+      Top = 395
+      Width = 200
+      Height = 69
+      Caption = 'Fechamento'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 6
+      OnClick = btnFechamentoClick
+      PngImage.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        61000000017352474200AECE1CE900000006624B474400FF00FF00FFA0BDA793
+        000000097048597300000EC400000EC401952B0E1B0000000774494D45000000
+        000000000973942E000002874944415478DA9D93CF4F134114C7BFB3E0420AE5
+        00344552571191404AD00862058C3F10851B49137B2004317033F1626A4888DC
+        4C3C7A43897F01840324CACD831A3541A1C14A1128A52D527EA580FDB5BBB3E3
+        741B587A532799BCC99B799F99F79DF708FE63CC8F3E649A4641A90AF22F81DE
+        D78FF440D15206FFEA77140BA201181E1EE69B1A0E27A5F4C8F6D9190468104B
+        CB5058710E1AD5E0793781228D1880A1A12166B3D9F4352124CB5E11E651DAD0
+        9CF6408EEF802A29F8663EC0241F4B6170709049A725C4DF4EA3B0A3430F3E04
+        3468B3B070807CB001AACADC236071F613C444D200B8DD6E66F57AA144A328EE
+        E9C902D4A73EC3DAD882D4FE2F683A80E0A76706E460DF003C6B6F67527939CF
+        8F62C9E703E5F92B7CADA82AEEF55FC2C9C66B48EE85332F6004CBDE39D0E876
+        06F0F46E2B3B5F56896ABB9D1F503302CAB26EC7C6C739E0226C1C908886C0D4
+        24AC964D7C7CBF83E45604C4DDD5CAEC856750535FCF6FD883128B65008A02C1
+        64C2C4E4249C7D75902E5F4762370073C12E24DB06A6DF24B01BDCCCBCE0C9CD
+        26565922A1A6B6D6B89D03D2DF38363505E7FD1A5434DD407C270068491415A5
+        E099DB4034B46268F0D8E1605249899EF3B2DFAF6B9006C81CE8ECA94295E316
+        E2DBDCAF700D888070680D5B814503D0DBDBCB2C5C3CE4E4C0DEDF9F550B66EF
+        4B545FBD8DD8F62A07F0AF23B908AF8711F17B0D407777376B6B6B8367741417
+        0606B200E2EC0BD436DF416C6B856B93D201EB9B11AC2F790C80CBE5629D9D9D
+        474159D5F8E539EA5A3AF4C39AAA404DC511F0FF4070F11BC8C8C8085B585840
+        3018CCAAFFE3D6757615056633F2F20B20E69B7042CCC3C1EF28D67C5FFFAE1B
+        5F3D38C5D2AD4BA9A2B770BA23855C51EF893F71D85F1B3680A58A0000000049
+        454E44AE426082}
+      PngOptions = [pngBlendOnDisabled, pngGrayscaleOnDisabled]
+    end
   end
-  object BitBtn1: TBitBtn
-    Left = 848
-    Top = 336
-    Width = 75
-    Height = 25
-    Caption = 'BitBtn1'
-    TabOrder = 1
-    OnClick = BitBtn1Click
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 477
+    Width = 942
+    Height = 19
+    Panels = <
+      item
+        Text = 'Total apartamentos: 00'
+        Width = 150
+      end
+      item
+        Text = 'Ocupados: xx'
+        Width = 100
+      end
+      item
+        Text = 'Livres: xx'
+        Width = 100
+      end
+      item
+        Text = 'Operador: xxx'
+        Width = 200
+      end
+      item
+        Alignment = taCenter
+        Text = 'Hora atual: 00:00:00'
+        Width = 150
+      end>
   end
-  object mnuPrincipal: TMainMenu
-    Left = 976
-    Top = 120
+  object panelApartamentos: TPanel
+    Left = 0
+    Top = 0
+    Width = 519
+    Height = 477
+    Align = alLeft
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    Color = clTeal
+    TabOrder = 0
+    object Label5: TLabel
+      Left = 8
+      Top = 6
+      Width = 88
+      Height = 16
+      Align = alCustom
+      Alignment = taCenter
+      Caption = 'Apartamentos'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object grdMovimento: TDBGrid
+      Left = 7
+      Top = 24
+      Width = 500
+      Height = 439
+      Align = alCustom
+      Ctl3D = False
+      DataSource = dsMovimento
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Arial'
+      TitleFont.Style = [fsBold]
+      OnDrawColumnCell = grdMovimentoDrawColumnCell
+      OnDblClick = grdMovimentoDblClick
+      Columns = <
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'apartamento'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Title.Caption = 'Apartamento'
+          Width = 85
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'tipo'
+          Title.Caption = 'Tipo'
+          Width = 118
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'valor2horas'
+          Title.Caption = 'Valor mom. 2 horas'
+          Width = 145
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'entrada'
+          Title.Caption = 'Entrada'
+          Width = 131
+          Visible = True
+        end>
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 424
+    Top = 72
     object mnuCadastro: TMenuItem
       Caption = 'Cadastros'
       object mnuFuncionarios: TMenuItem
@@ -5146,7 +5810,7 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Produtos'
         OnClick = mnuProdutosClick
       end
-      object mnuSep01: TMenuItem
+      object N1: TMenuItem
         Caption = '-'
       end
       object mnuTiposApto: TMenuItem
@@ -5167,59 +5831,143 @@ object frmPrincipal: TfrmPrincipal
       OnClick = mnuSairClick
     end
   end
-  object qryAptos: TADOQuery
-    Connection = dmPrincipal.conn
-    CursorType = ctStatic
-    AfterOpen = qryAptosAfterOpen
-    AfterScroll = qryAptosAfterScroll
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT numero, situacao, nome'
-      'FROM aptos'
-      'LEFT JOIN aptos_tipos'
-      'ON aptos.id_tipo=aptos_tipos.id')
-    Left = 976
-    Top = 152
+  object dsMovimento: TDataSource
+    DataSet = qry
+    Left = 440
+    Top = 424
   end
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer
-    Left = 968
-    Top = 48
+    Left = 456
+    Top = 72
   end
-  object PopupMenu1: TPopupMenu
-    Left = 944
-    Top = 120
-    object Lanamento1: TMenuItem
-      Bitmap.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        18000000000000030000C40E0000C40E00000000000000000000FFFFFFD58757
-        D58351D17D4BD17945FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFD99165DFA481EAC2ABEAC0A8DC9971D17B47FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDB976FEDC8B3
-        E7B89BE6B498EAC3ABDE9C73D17D49FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFDD9F79EDCCB7E8BDA3E4B192E6B69AEAC3ACDE9C74D3
-        7F4DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFA57FE6B394
-        EECCB8E9BEA5E5B394E6B79BEAC4ADDE9E78D3814FFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFDFA583E6B498EECDBAE9BFA5E5B496E7B99DEB
-        C6AEDE9F79D58351FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        E1A785E6B799EECEBBE9C0A7E8BDA3ECC8B3DFA481D2895DFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE1A987E6B79CEFCFBCEECEBAE2
-        AE8CD29B7B888888868686FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFE1A989E7B99CE6B698D8A98CD2D2D2B5B5B58989898787878585
-        85838383818181FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3AD8BDAA78892
-        9292C7C7C7CCCCCCC7C7C7C6C6C6C3C3C3C0C0C0848484828282FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF959595939393D4D4D4C8C8C8BCBCBCBABA
-        BAC2C2C2C4C4C4858585FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFF969696DDDDDDC5C5C58F8F8F8D8D8DACACACD7D7D7878787FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF989898E4E4E4CFCFCF929292FFFF
-        FF8E8E8E8C8C8C8A8A8AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFF9B9B9BE2E2E2E7E7E7B9B9B9939393FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9D9D9D9B9B9BE4E4E4EEEEEE9696
-        96FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFF9E9E9E9C9C9C9B9B9B999999FFFFFFFFFFFFFFFFFF}
-      Caption = 'Configurar Apartamento...'
-      OnClick = Lanamento1Click
-    end
+  object qry: TZQuery
+    Connection = dmPrincipal.zconn
+    AfterOpen = qryMovimentoAfterOpen
+    AfterScroll = qryMovimentoAfterScroll
+    SQL.Strings = (
+      'SELECT'#10
+      '   ap.nome as apartamento,'#10
+      '   tp.tipo as tipo,'#10
+      '   tp.valor as valor2horas,'#10
+      '   IFNULL(mv.id, 0) AS ativo,'#10
+      '   mv.entrada,'#10
+      '   mv.veiculo,'#10
+      '   mv.aberto_por,'#10
+      '   mv.total_consumo,'#10
+      '   mv.total_geral'#10
+      'FROM apartamentos ap'#10
+      'LEFT JOIN movimentacao_aberta mv on ap.nome=mv.apartamento'#10
+      'LEFT JOIN resumo_tipos tp on ap.id_tipo_apto=tp.id'#10
+      'ORDER BY ap.nome'#10
+      '')
+    Params = <>
+    Left = 408
+    Top = 424
+  end
+  object dsConsumo: TDataSource
+    DataSet = qConsumo
+    Left = 880
+    Top = 192
+  end
+  object PngImageList1: TPngImageList
+    PngImages = <
+      item
+        PngImage.Data = {
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          610000001974455874536F6674776172650041646F626520496D616765526561
+          647971C9653C000002544944415478DA95924D68D36018C79F7C746D92A6B5DD
+          86B2B5540FE2A111BC7A109908823741D4F939F5205E4451F4EC511041143C09
+          DE446FE2555BBFE7C9EDD04EBC48B77569BA43ED47DABC5992373E6F628BA5DB
+          612F24E125EFEFF73CF93FE17CDF87ED2C7BEEAA1C7DF1BCD7DF7343823BF772
+          788FC3C307E54DE14B57F2BEEB1CA58EBB20BF7EF96958C06041A8B0BD6FDB1A
+          FFF8D190C4BE78398FEF4B5C740C36EAEBAF50745F7DFBE66728F80743340A4C
+          E7773A4009D1C4674F0309B93097E778BE242454109349B057AB400CE326759C
+          27A1E0F6DD984F69172489E7541568BB0DB4D94489A561BBC0601EE148220964
+          AD0A76CDF0109652C577CEE013E88D5B31DFF34C4E92041E0F7AAD26B87F1AE0
+          A3404069249900525D63953D6C3F9E2ABE272321BAD7AEC7A8EB99BC2C0B626A
+          078047D1CC2E0F2B33B81EC21F0A64F3298461A1C4ED4AB9DD3CAC2CA3C403C8
+          4C4373619152D751D21F8BE4FFF323026BF63C06C69562D319804A25EC0005AD
+          A525703AA63631FFA5BCA5C03A732E0F088BB28281A908FB41FB4C42EA75B00C
+          03363A1D6DE7E28FF288A077FA6C5039841360D57406B1B4B9582ACD2B53BBA0
+          5733A0A7EB2831B5A95F4BE581A0776A3698B328CB08C7C1D20D20EB0C76E318
+          1AE0D394C6D3829ACD4057AF411703659D642ABFCB81C03C7172868F888588A2
+          806B76C14218C7171FFFF63908CCD87F0047EC9ACAE4A4C0CE986C228DC691EC
+          EA7271F009AD63C751122938ED16C58A0A863594B6BE775FF09F8CA9AAD08747
+          426C1C3A3C83F0FCC4F7AF43707F55737B98E460B6BA52DC728CDB5D7F01E142
+          7068B693C6920000000049454E44AE426082}
+        Name = 'PngImage0'
+        Background = clWindow
+      end
+      item
+        PngImage.Data = {
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          61000000017352474200AECE1CE900000006624B474400FF00FF00FFA0BDA793
+          000000097048597300000EC400000EC401952B0E1B0000000774494D45000000
+          000000000973942E000002A84944415478DA9D935D48536118C7FFEF498FB639
+          2F445171F9D192A0D208342B45E6C79206463182091266120605DD098220DD04
+          7513D18DD907E1A5175D86742351D107DA1CB6D4CC39B7996E3AA7D3ED6C3BEF
+          797BCFA936BDAB0E1C9E97F79CFFEF7D9EE7FF3E04FFF14C3FBEC91485825219
+          E45F84AEA7B734A1585004F7E217E409621A303838C83F2AF8F3524A53B1FB18
+          830005627E11722A0E41A10A9CE32F90AB903460606080198D466D4D08D9134F
+          09D3C8AFA957779088AE8326E3989D780B5D625709FDFDFDACACAC0CE3D218CC
+          FBDB20102105A8511C28E080446405544EF01D01738EF71063521AD0D7D7C74C
+          261346C323D02107ED79B614E078FC030A6B1B10DFFA014503107C734E8044B6
+          40DA1FB632B5262AF3AECA0ACA4BCA21F375C01B84ADA443031CDD7E8DE2DA46
+          489BFE5F193082EFAE29D0F01A88F57E13BBD46C43927757E6B6C88A8C244DE2
+          936302215F181DA6CBA8DC78052307C4C23E305942614100EFDEAC430AAE829C
+          BDD7C86C2D171192424870A12A5653CC14323139E940F6861EBD3AA0F4A419B1
+          9007067D08A5C6158CBD8C21E40D8034DFA967175ACF6BC2E4EFD3D52C54F196
+          7F1BDD55D750EC1D45455D13A2EB1E4091909B1B87736A0561DF0248E3ED3AA6
+          D62F27A9D607A3B1840328367D11F454F76A8DCC9B1F41E5E91644D7DCDC42DE
+          03EE90DFB784A0672EED42575717339BCD78EE7A0289FB7CFDC48DD45D30B81E
+          E1F0190B76D61639805B4732E05FF663D5ED4A033A3B3B99C562C133E730AE54
+          F74010F6A500A2E3018ED4B76127B80085C355C0726015CBF3CE34C06EB733AB
+          D59A12EDB98D1FEFA2AAE19CF6B322F31EC5A3F0B8BFC23BF71964686888CDCC
+          CCC0EBF5EEB9FFBBA3FDE022F40603B2B2F510B375C814B310D90E636976F2EF
+          A671F8EA01A68E2EE50EA9519D482143D466E22705CF6D1B9BCFB8C000000000
+          49454E44AE426082}
+        Name = 'PngImage1'
+        Background = clWindow
+      end>
+    Left = 536
+    Top = 320
+    Bitmap = {}
+  end
+  object Timer2: TTimer
+    Interval = 60000
+    OnTimer = Timer2Timer
+    Left = 896
+    Top = 72
+  end
+  object qConsumo: TZReadOnlyQuery
+    Connection = dmPrincipal.zconn
+    AfterOpen = qConsumoAfterOpen
+    SQL.Strings = (
+      'SELECT '
+      '   id, '
+      '   id_produto, '
+      '   produto, '
+      '   quantidade, '
+      '   valor_unitario, '
+      '   (valor_unitario*quantidade) as total '
+      'FROM movimentacao_consumo '
+      'WHERE id_movimentacao=:id_movimentacao'
+      '')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id_movimentacao'
+        ParamType = ptUnknown
+      end>
+    Left = 848
+    Top = 192
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'id_movimentacao'
+        ParamType = ptUnknown
+      end>
   end
 end

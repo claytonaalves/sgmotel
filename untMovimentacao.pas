@@ -4,19 +4,19 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, untProto01, StdCtrls, Buttons, Grids, DBGrids, DB, ADODB;
+  Dialogs, untProto01, StdCtrls, Buttons, Grids, DBGrids, DB, ADODB,
+  ComCtrls, ExtCtrls, PngBitBtn, ZAbstractRODataset, ZDataset;
 
 type
   TfrmMovimentacao = class(TfrmProto01)
-    Label1: TLabel;
-    Label2: TLabel;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
     DBGrid1: TDBGrid;
-    btnCancelar: TBitBtn;
-    ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
-    procedure ADOQuery1AfterOpen(DataSet: TDataSet);
+    Shape13: TShape;
+    Memo1: TMemo;
+    Shape2: TShape;
+    Label3: TLabel;
+    ZReadOnlyQuery1: TZReadOnlyQuery;
+    ComboBox1: TComboBox;
   private
     { Private declarations }
   public
@@ -31,20 +31,5 @@ implementation
 uses untDM;
 
 {$R *.dfm}
-
-procedure TfrmMovimentacao.ADOQuery1AfterOpen(DataSet: TDataSet);
-begin
-   inherited;
-
-   if ( DataSet.RecordCount > 0 ) then begin
-
-      with DataSet do begin
-         TNumericField(Fields[4]).DisplayFormat := '#,##0.00';
-         TNumericField(Fields[5]).DisplayFormat := '#,##0.00';
-      end;
-
-   end;
-
-end;
 
 end.

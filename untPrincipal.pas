@@ -4,58 +4,101 @@ interface
 
 uses
   Windows, Messages, SysUtils, StrUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, Grids, DBGrids, ExtCtrls, DB, ADODB, StdCtrls, Buttons, XiPanel, untClasses;
+  Dialogs, Menus, Grids, DBGrids, ExtCtrls, DB, ADODB, StdCtrls, Buttons,
+  ComCtrls, ImgList, PngImageList, PngBitBtn, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset;
 
 type
   TfrmPrincipal = class(TForm)
-    mnuPrincipal: TMainMenu;
+    MainMenu1: TMainMenu;
     mnuCadastro: TMenuItem;
     mnuFuncionarios: TMenuItem;
     mnuProdutos: TMenuItem;
-    mnuSep01: TMenuItem;
+    N1: TMenuItem;
     mnuTiposApto: TMenuItem;
     mnuApartamentos: TMenuItem;
-    qryAptos: TADOQuery;
+    dsMovimento: TDataSource;
     mnuMovimentacoes: TMenuItem;
     mnuSair: TMenuItem;
     Timer1: TTimer;
-    Bevel1: TBevel;
-    Panel1: TPanel;
+    panelResumo: TPanel;
+    Label15: TLabel;
+    shpApto: TShape;
+    lbl04: TLabel;
+    lblEntrada: TLabel;
+    lbl03: TLabel;
+    Label7: TLabel;
+    lblTranscorrido: TLabel;
+    lblVeiculo: TLabel;
+    lblApto: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Shape6: TShape;
+    Label2: TLabel;
+    lblConsumo: TLabel;
+    gConsumo: TDBGrid;
+    StatusBar1: TStatusBar;
+    btMaisUm: TPngBitBtn;
+    btMenosUm: TPngBitBtn;
+    qry: TZQuery;
+    Shape2: TShape;
+    Shape4: TShape;
+    Shape5: TShape;
+    Shape3: TShape;
     Label1: TLabel;
-    lblHora: TLabel;
-    PopupMenu1: TPopupMenu;
-    Lanamento1: TMenuItem;
-    Label4: TLabel;
-    BitBtn1: TBitBtn;
+    btAddItem: TPngBitBtn;
+    btRemItem: TPngBitBtn;
+    panelApartamentos: TPanel;
+    grdMovimento: TDBGrid;
+    Label5: TLabel;
+    lblTipo: TLabel;
+    Shape1: TShape;
+    Label8: TLabel;
+    lblSituacao: TLabel;
+    lblAbertoPor: TLabel;
+    dsConsumo: TDataSource;
+    btnAbertura: TPngBitBtn;
+    btnFechamento: TPngBitBtn;
+    PngImageList1: TPngImageList;
+    Timer2: TTimer;
+    qConsumo: TZReadOnlyQuery;
 
-    procedure CriaTabela;
+    procedure FormCreate(Sender: TObject);
+
+    // MENUS
     procedure mnuProdutosClick(Sender: TObject);
+    procedure mnuSairClick(Sender: TObject);
     procedure mnuFuncionariosClick(Sender: TObject);
     procedure mnuTiposAptoClick(Sender: TObject);
     procedure mnuApartamentosClick(Sender: TObject);
-
-    procedure MudaStatusBotoes(lEnt, lCon, lSai: boolean);
-    procedure btnAberturaClick(Sender: TObject);
-    procedure qryAptosAfterScroll(DataSet: TDataSet);
-    procedure grdMovimentoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-
-    procedure qryAptosAfterOpen(DataSet: TDataSet);
-    procedure btnConsumoClick(Sender: TObject);
-    procedure btnFechamentoClick(Sender: TObject);
     procedure mnuMovimentacoesClick(Sender: TObject);
+
+    // Botoes
+    procedure btnAberturaClick(Sender: TObject);
+    procedure btnCancelaAberturaClick(Sender: TObject);
+
+    procedure qryMovimentoAfterScroll(DataSet: TDataSet);
+    procedure grdMovimentoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+                                         State: TGridDrawState);
+
+//    procedure btnConsumoClick(Sender: TObject);
+    procedure btnFechamentoClick(Sender: TObject);
+
+    procedure qryMovimentoAfterOpen(DataSet: TDataSet);
+
     procedure Timer1Timer(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
-    procedure ConfigurarApto1Click(Sender: TObject);
-    procedure XiPanel15MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btAddItemClick(Sender: TObject);
+    procedure btRemItemClick(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
-    procedure Lanamento1Click(Sender: TObject);
-
-    procedure SetaVariaveisApto(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure Apto_DuploClique(Sender: TObject);
-    procedure mnuSairClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-
+    procedure AtualizaLabelTranscorrido;
+    procedure AtivaGridConsumo;
+    procedure DesativaGridConsumo;
+    procedure qConsumoAfterOpen(DataSet: TDataSet);
+    procedure btMaisUmClick(Sender: TObject);
+    procedure btMenosUmClick(Sender: TObject);
+    procedure grdMovimentoDblClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -65,14 +108,12 @@ type
 
 var
   frmPrincipal: TfrmPrincipal;
-  oApto: array [1..35] of TApto;
-  iAptoAtual: integer;
-
 
 implementation
 
-uses untProdutos, untDM, untFuncionarios, untApartamentos, untTiposApto, untEntrada,
-     untFechamento, untMovimentacao, untLogin, untConfApto, untResumo;
+uses
+  untProdutos, untDM, untFuncionarios, untApartamentos, untTiposApto, untEntrada,
+  untFechamento, untMovimentacao, untLocalizarProdutos;
 
 {$R *.dfm}
 
@@ -80,485 +121,82 @@ uses untProdutos, untDM, untFuncionarios, untApartamentos, untTiposApto, untEntr
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-
-   //CriaTabela;
-
-   BitBtn1.Glyph := bmpOk;
-
+  qry.Active := True;
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.CriaTabela;
-var
-   iTopo, iCounter01, iCounter02, i: integer;
-
+procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
-
-   i := 1;
-
-   for iCounter01 := 0 to 8 do begin
-
-      iTopo := 16 + (iCounter01 * 75);
-
-      for iCounter02 := 0 to 4 do begin
-
-         // Cria o Objeto Apto que mostra os paineis na janela
-         oApto[i] := TApto.Cria(Self);
-         oApto[i].Numero := i;
-         oApto[i].Left := 16 + (iCounter02 * 150);
-         oApto[i].Top := iTopo;
-         //oApto[i].OnMouseMove2 := SetaVariaveisApto;
-         oApto[i].OnDuploClique := Apto_DuploClique;
-         oApto[i].Visible := true;
-
-         oApto[i].Menu := PopupMenu1;
-
-         // Filtra a Query para o numero do Apto em foco
-         qryAptos.Filter := 'numero=' + IntToStr(i);
-         qryAptos.Filtered := true;
-
-         // Se o Apto estiver ativo
-         if ( qryAptos.FieldByName('situacao').AsString <> 'I' ) then begin
-
-            oApto[i].Situacao := LIVRE;
-            oApto[i].Tipo := qryAptos.FieldByName('nome').AsString;
-
-            if ( qryAptos.FieldByName('situacao').AsString = 'O' ) then
-               oApto[i].Situacao := OCUPADO;
-
-         end;
-
-         qryAptos.Filter := '';
-         qryAptos.Filtered := false;
-
-
-         i := i + 1;
-
-       end;
-
-   end;
-
+  StatusBar1.Panels[3].Text := 'Operador: ' + operador;
+  Timer1.Enabled := true; // Atualiza o relogio da barra de status
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.SetaVariaveisApto(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-begin
-
-   if (Sender is TApto) then begin
-
-      iAptoAtual := TApto(Sender).Numero;
-
-   end;
-
-   label4.Caption := inttostr(iAptoAtual);
-
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.mnuProdutosClick(Sender: TObject);
-begin
-
-   try
-      frmProdutos := TfrmProdutos.Create(Self);
-      frmProdutos.ShowModal;
-   finally
-      frmProdutos.Release;
-   end;
-
-   frmProdutos := nil;
-
-end;
-
-// =============================================================================
-
-// =============================================================================
-
-procedure TfrmPrincipal.mnuFuncionariosClick(Sender: TObject);
-begin
-
-   try
-      frmFuncionarios := TfrmFuncionarios.Create(Self);
-      frmFuncionarios.ShowModal;
-   finally
-      frmFuncionarios.Release;
-   end;
-
-   frmFuncionarios := nil;
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.mnuTiposAptoClick(Sender: TObject);
-begin
-
-   try
-      frmTiposApto := TfrmTiposApto.Create(Self);
-      frmTiposApto.ShowModal;
-   finally
-      frmTiposApto.Release;
-   end;
-
-   frmTiposApto := nil;
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.mnuApartamentosClick(Sender: TObject);
-begin
-
-   try
-      frmApartamentos := TfrmApartamentos.Create(Self);
-      frmApartamentos.ShowModal;
-   finally
-      frmApartamentos.Release;
-   end;
-
-   frmApartamentos := nil;
-
-   {[if qryMovimento.RecordCount > 0 then begin
-      //grdMovimento.DataSource := dsMovimento;
-   end; }
-
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.MudaStatusBotoes(lEnt, lCon, lSai: boolean);
-begin
-
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.btnAberturaClick(Sender: TObject);
-var
-   sData, sEnt, sSai, sCodigo, sSit, sVeic: string;
-
-begin
-
-   {try
-
-      sCodigo := qryMovimento.Fields[0].Text;
-
-      frmEntrada := TfrmEntrada.Create(Self);
-      frmEntrada.lblApto.caption := qryMovimento.Fields[2].text;
-      frmEntrada.lblTipo.Caption := qryMovimento.Fields[3].Text;
-
-      // Mostra o Form
-      if ( frmEntrada.ShowModal = mrOk ) then begin
-
-         // Se o usuario pressionar ENTER
-         // pega os dados do FORM e atualiza a tabela "movimento"
-         sEnt  := QuotedStr(LeftStr(frmEntrada.edtHora.Text,5));
-         sSai  := QuotedStr(frmEntrada.sSaidaPrev);
-         sData := QuotedStr(FormatDateTime('dd/mm/yyyy', Date()));
-         sVeic := QuotedStr(frmEntrada.edtVeiculo.Text);
-         sSit  := 'true';
-
-         dmPrincipal.conn.Execute('UPDATE movimento SET situacao=' + sSit +
-                                  ', data_ent=' + sData +
-                                  ', entrada=' + sEnt +
-                                  ', saida=' + sSai +
-                                  ', veiculo=' + sVeic +
-                                  ' WHERE codigo=' + sCodigo);
-
-         qryMovimento.Active := false;
-         qryMovimento.Active := true;
-
-      end
-   finally
-      frmEntrada.Release;
-   end;
-
-   frmEntrada := nil;}
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.qryAptosAfterScroll(DataSet: TDataSet);
-begin
-   {if qryMovimento.FieldValues['situacao'] then
-      MudaStatusBotoes(false,true,true)
-   else
-      MudaStatusBotoes(true,false,false);
-   }
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.grdMovimentoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-var
-   sRegionType : String;
-   iPosY : Integer;
-   iPosX : Integer;
-   grdGrid: TDBGrid;
-
-begin
-   {
-   sRegionType := Column.Field.AsString;
-   grdGrid := TDBGrid(Sender);
-
-
-   // Se for a Coluna Situacao
-   if ( Column.FieldName = 'situacao' ) then
-   begin
-
-      // Se o campo contiver "true"
-      if ( Column.Field.Value ) then begin
-         grdGrid.Canvas.TextRect(rect, rect.Left + 4 + 16 + 4, rect.Top + 2, 'Ocupado');
-
-         iPosY := ((rect.Bottom-rect.Top) div 2) - bmpOcupado.Height div 2;
-         iPosX := ((16 div 2 ) - bmpOcupado.Width div 2);
-
-         grdGrid.Canvas.Draw(rect.Left + 4 + iPosX, rect.Top + iPosY, bmpOcupado);
-      end
-
-      else begin
-         grdGrid.Canvas.TextRect(rect, rect.Left + 4 + 16 + 4, rect.Top + 2, 'Livre');
-
-         iPosY := ((rect.Bottom-rect.Top) div 2) - bmpLivre.Height div 2;
-         iPosX := ((16 div 2 ) - bmpLivre.Width div 2);
-
-         grdGrid.Canvas.Draw(rect.Left + 4 + iPosX, rect.Top + iPosY, bmpLivre)
-      end
-
-   end {if ...}
-
-   //else begin
-   //   grdGrid.Canvas.TextRect(rect, rect.Left + 5 , rect.Top + 2, sRegionType);
-   //end;
-
-
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.qryAptosAfterOpen(DataSet: TDataSet);
-begin
-
-   {if ( qryMovimento.RecordCount > 0 ) then begin
-
-      with DataSet do begin
-         TNumericField(Fields[11]).DisplayFormat := '#,##0.00';
-         TNumericField(Fields[4]).DisplayFormat := '#,##0.00';
-         TNumericField(Fields[7]).DisplayFormat := '#,##0.00';
-      end;
-
-      qryMovimento.AfterScroll := qryMovimentoAfterScroll;
-      //grdMovimento.DataSource := dsMovimento;
-
-   end;
-   }
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.btnConsumoClick(Sender: TObject);
-begin
-   {
-   try
-      frmConsumo := TfrmConsumo.Create(Self);
-
-      frmConsumo.sCod_Movimento := qryMovimento.Fields[0].Text;
-      frmConsumo.lblApto.Caption := qryMovimento.Fields[2].Text;
-      frmConsumo.lblTipo.Caption := qryMovimento.Fields[3].Text;
-      frmConsumo.lblEntrada.Caption := qryMovimento.Fields[5].Text;
-      frmConsumo.lblSaida.Caption := qryMovimento.Fields[6].Text;
-      frmConsumo.lblVeiculo.Caption := qryMovimento.Fields[8].Text;
-      frmConsumo.cValor_Apto := qryMovimento.Fields[4].Value;
-
-      frmConsumo.ShowModal;
-
-   finally
-      frmConsumo.Release;
-   end;
-
-   frmConsumo := nil;
-
-   qryMovimento.Active := false;
-   qryMovimento.Active := true;
-   }
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.btnFechamentoClick(Sender: TObject);
-begin
-   {
-   try
-      frmFechamento := TfrmFechamento.Create(Self);
-
-      frmFechamento.sCod_Movimento := qryMovimento.Fields[0].Text;
-      frmFechamento.cValor_Apto := qryMovimento.Fields[4].Value;
-
-      frmFechamento.sCod_Apto := qryMovimento.Fields[9].Text;
-      frmFechamento.sData_Ent := qryMovimento.Fields[10].Text;
-      frmFechamento.sEntrada  := qryMovimento.Fields[5].Text;
-      frmFechamento.sVeiculo  := qryMovimento.Fields[8].Text;
-
-      frmFechamento.lblApto.Caption := qryMovimento.Fields[2].Text;
-      frmFechamento.lblTipo.Caption := qryMovimento.Fields[3].Text;
-      frmFechamento.lblEntrada.Caption := qryMovimento.Fields[5].Text;
-      frmFechamento.lblVeiculo.Caption := qryMovimento.Fields[8].Text;
-
-      //frmConsumo.cValor_Apto := qryMovimento.Fields[4].Value;
-
-      if frmFechamento.ShowModal = mrOk then begin
-         qryMovimento.Active := false;
-         qryMovimento.Active := true;
-      end;
-
-   finally
-      frmFechamento.Release;
-   end;
-
-   frmFechamento := nil;
-   }
-end;
-
-// =============================================================================
+// -----------------------------------------------------------------------------
 
 procedure TfrmPrincipal.mnuMovimentacoesClick(Sender: TObject);
 begin
-
-   try
-      frmMovimentacao := TfrmMovimentacao.Create(Self);
-      frmMovimentacao.ShowModal;
-   finally
-      frmMovimentacao.Release;
-   end;
-
-   frmMovimentacao := nil;
-
+  try
+    frmMovimentacao := TfrmMovimentacao.Create(Self);
+    frmMovimentacao.ShowModal;
+  finally
+    frmMovimentacao.Release;
+    frmMovimentacao := nil;
+  end;
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+procedure TfrmPrincipal.mnuProdutosClick(Sender: TObject);
 begin
-   lblHora.Caption := FormatDateTime('hh:nn:ss', Time());
+  try
+    frmProdutos := TfrmProdutos.Create(Self);
+    frmProdutos.ShowModal;
+  finally
+    frmProdutos.Release;
+    frmProdutos := nil;
+  end;
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.FormActivate(Sender: TObject);
+procedure TfrmPrincipal.mnuFuncionariosClick(Sender: TObject);
 begin
-   {frmLogin := TFrmLogin.Create(Self);
-
-   try
-      if frmLogin.ShowModal <> mrOk then
-         Application.Terminate;
-   finally
-      frmLogin.Release;
-   end;
-
-   frmLogin := nil;
-
-   Caption := Caption + sOperador;}
+  try
+    frmFuncionarios := TfrmFuncionarios.Create(Self);
+    frmFuncionarios.ShowModal;
+  finally
+    frmFuncionarios.Release;
+    frmFuncionarios := nil;
+  end;
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.ConfigurarApto1Click(Sender: TObject);
-var
-   sTest: string;
-
+procedure TfrmPrincipal.mnuTiposAptoClick(Sender: TObject);
 begin
-   sTest := Sender.ClassName;
+  try
+    frmTiposApto := TfrmTiposApto.Create(Self);
+    frmTiposApto.ShowModal;
+  finally
+    frmTiposApto.Release;
+    frmTiposApto := nil;
+  end;
 
-   Messagebox(0,PChar(sTest),'',0);
-
+  qry.Active := false;
+  qry.Active := true;
 end;
 
-// =============================================================================
-
-procedure TfrmPrincipal.XiPanel15MouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+// Cadastro de APARTAMENTOS
+procedure TfrmPrincipal.mnuApartamentosClick(Sender: TObject);
 begin
-   PopupMenu1.Items[0].Caption := 'Configurar apto 01';
-end;
+  try
+    frmApartamentos := TfrmApartamentos.Create(Self);
+    frmApartamentos.ShowModal;
+  finally
+    frmApartamentos.Release;
+    frmApartamentos := nil;
+  end;
 
-// =============================================================================
-// Evento disparado quando o usuario pressiona
-// o menu popup de Configuracoes do apartamento
-// =============================================================================
+// NAO FACO A MENOR IDEIA DO PORQUE DISSO AI ABAIXO:
+//   if qry.RecordCount > 0 then begin
+//      grdMovimento.DataSource := dsMovimento;
+//   end;
 
-procedure TfrmPrincipal.Lanamento1Click(Sender: TObject);
-begin
-
-    // Cria o Form
-    frmConfApto := TFrmConfApto.Create(Self);
-    frmConfApto.Apto := oApto[iAptoAtual];
-
-    try
-       frmConfApto.ShowModal;
-
-    finally
-       frmConfApto.Release;
-       frmConfApto := nil;
-
-    end;
-end;
-
-// =============================================================================
-
-procedure TfrmPrincipal.Apto_DuploClique(Sender: TObject);
-begin
-
-   // Gambiarra pro duplo-clique funcionar no TLabel
-   if ( Sender is TApto ) then
-      iAptoAtual := TApto(Sender).Numero
-   else if ( Sender is TLabel ) then begin
-      with TLabel(Sender) do begin
-          iAptoAtual := TApto(Owner).Numero;
-      end;
-   end;
-
-
-   // Se o Apto estiver ATIVO
-   if ( oApto[iAptoAtual].Situacao <> INATIVO ) then begin
-
-      // Se o Apto estiver LIVRE
-      if ( oApto[iAptoAtual].Situacao = LIVRE ) then begin
-
-         frmEntrada := TfrmEntrada.Create(Self);
-         frmEntrada.Apartamento := oApto[iAptoAtual];
-
-         try
-            frmEntrada.ShowModal;
-         finally
-            frmEntrada.Release;
-            frmEntrada := nil;
-         end;
-
-      end
-
-      // Se o Apto estiver OCUPADO
-      else begin
-
-         frmResumo := TFrmResumo.Create(Self);
-         frmResumo.Apartamento := oApto[iAptoAtual];
-
-         try
-            frmResumo.ShowModal;
-         finally
-            frmResumo.Release;
-            frmResumo := nil;
-         end;
-
-      end;
-
-   end;
-
+  qry.Active := false;
+  qry.Active := true;
 end;
 
 procedure TfrmPrincipal.mnuSairClick(Sender: TObject);
@@ -566,9 +204,360 @@ begin
    Close;
 end;
 
-procedure TfrmPrincipal.BitBtn1Click(Sender: TObject);
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.btnAberturaClick(Sender: TObject);
+var apto: string;
 begin
-   Lanamento1Click(self);
+  apto := qry.FieldByName('apartamento').AsString;
+  try
+    frmEntrada := TfrmEntrada.Create(Self);
+    frmEntrada.lblApto.Caption := apto;
+    frmEntrada.lblTipo.Caption := qry.FieldByName('tipo').AsString;
+    if frmEntrada.ShowModal=mrOk then
+    begin
+      qry.Active := false;
+      qry.Active := true;
+      qry.Locate('apartamento', apto, [loPartialKey]);
+    end;
+  finally
+    frmEntrada.Release;
+    frmEntrada := nil;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.qryMovimentoAfterScroll(DataSet: TDataSet);
+begin
+  lblApto.Caption := qry.FieldByName('apartamento').AsString;
+  lblTipo.Caption := qry.FieldByName('tipo').AsString;
+
+  // Apartamento OCUPADO
+  if qry.FieldByName('ativo').AsInteger > 0 then begin
+    lblSituacao.Caption := 'OCUPADO';
+    shpApto.Brush.Color := clRed;
+
+    lblEntrada.Caption := qry.FieldByName('entrada').AsString;
+    lblVeiculo.Caption := qry.FieldByName('veiculo').AsString;
+    lblAbertoPor.Caption := qry.FieldByName('aberto_por').AsString;
+
+    btnAbertura.Caption := 'Cancelar abertura';
+    btnAbertura.PngImage := nil;
+    btnAbertura.PngImage := PngImageList1.PngImages.Items[0].PngImage;
+    btnAbertura.OnClick := btnCancelaAberturaClick;
+
+    btnFechamento.Enabled := true;
+
+    AtivaGridConsumo;
+    AtualizaLabelTranscorrido;
+  end
+
+  // Apartamento LIVRE
+  else begin
+    lblSituacao.Caption := 'LIVRE';
+    shpApto.Brush.Color := clMoneyGreen;
+
+    lblEntrada.Caption := '---';
+    lblVeiculo.Caption := '---';
+    lblTranscorrido.Caption := '---';
+    lblAbertoPor.Caption := '---';
+
+    btnAbertura.Caption := 'Abertura';
+    btnAbertura.PngImage := nil;
+    btnAbertura.PngImage := PngImageList1.PngImages.Items[1].PngImage;
+
+    btnAbertura.OnClick := btnAberturaClick;
+
+    btnFechamento.Enabled := false;
+
+    DesativaGridConsumo;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+// Ativa ou desativa a grid e os botoes de acao, se houver registros
+// Atualiza a barra de status
+procedure TfrmPrincipal.qryMovimentoAfterOpen(DataSet: TDataSet);
+var
+  cond: boolean;
+  ocupados: integer;
+begin
+  ocupados := 0;
+  cond := (qry.RecordCount > 0);
+
+  grdMovimento.Enabled := cond;
+  btnAbertura.Enabled := cond;
+  btnFechamento.Enabled := cond;
+
+  // conta quantos aptos estao ocupados
+  if cond then
+  begin
+    repeat
+      if qry.FieldByName('ativo').AsInteger > 0 then
+        inc(ocupados);
+
+      qry.Next;
+    until qry.Eof;
+
+    qry.First;
+  end;
+
+  StatusBar1.Panels[0].Text := 'Total apartamentos: ' + IntToStr(qry.RecordCount);
+  StatusBar1.Panels[1].Text := 'Ocupados: ' + IntToStr(ocupados);
+  StatusBar1.Panels[2].Text := 'Livres: ' + IntToStr(qry.RecordCount-ocupados);
+
+  //TNumericField(DataSet.FieldByName('valor2horas')).DisplayFormat := '#,##0.00'
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+  StatusBar1.Panels[4].Text := 'Hora atual: ' + FormatDateTime('hh:nn:ss', Time());
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.btnCancelaAberturaClick(Sender: TObject);
+{ DONE :
+Adicionar opção para cancelamento de um movimento aberto:
+- Restaurar os produtos no Estoque
+- Desocupar o apartamento }
+begin
+  if MessageBox(0, 'Cancelar abertura?', 'Atenção!',
+                MB_YESNO + MB_ICONERROR)=ID_YES then
+  begin
+    dmPrincipal.zconn.ExecuteDirect('DELETE FROM movimentacao WHERE id='+qry.FieldByName('ativo').AsString);
+    // Atualiza a lista de apartamentos principal
+    qry.Active := false;
+    qry.Active := true;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.btnFechamentoClick(Sender: TObject);
+begin
+  try
+    frmFechamento := TfrmFechamento.Create(Self);
+    frmFechamento.movimento.id := qry.FieldByName('ativo').AsInteger;
+
+    if frmFechamento.ShowModal=mrOk then begin
+      qry.Active := false;
+      qry.Active := true;
+    end;
+  finally
+    frmFechamento.Release;
+    frmFechamento := nil;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+// Atualiza o label de tempo transcorrido
+procedure TfrmPrincipal.Timer2Timer(Sender: TObject);
+begin
+  AtualizaLabelTranscorrido;
+end;
+
+procedure TfrmPrincipal.AtualizaLabelTranscorrido;
+var data1, data2: TDateTime;
+begin
+  if qry.FieldByName('ativo').AsInteger > 0 then
+  begin
+    data1 := qry.FieldByName('entrada').AsDateTime;
+    data2 := Now;
+
+    lblTranscorrido.Caption := diff(data1, data2);
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+procedure TfrmPrincipal.AtivaGridConsumo;
+const sql = 'SELECT id, id_produto, produto, quantidade, valor_unitario, '+
+            '(valor_unitario*quantidade) as total FROM movimentacao_consumo ' +
+            'WHERE id_movimentacao=%s';
+var soma_total: real;
+begin
+  qConsumo.Close;
+  // o campo "ativo" eh a ID da movimentacao na tabela "movimentacao"
+//  qConsumo.SQL.Text := Format(sql, [qry.FieldByName('ativo').AsString]);
+  qConsumo.ParamByName('id_movimentacao').AsString := qry.FieldByName('ativo').AsString;
+  qConsumo.Open;
+
+  soma_total := 0;
+
+  if qConsumo.RecordCount>0 then
+  begin
+    repeat
+      soma_total := soma_total + qConsumo.FieldByName('total').AsFloat;
+      qConsumo.Next;
+    until qConsumo.Eof;
+  end;
+
+  lblConsumo.Caption := 'R$ ' + Format('%0.2f', [soma_total]);
+end;
+
+procedure TfrmPrincipal.DesativaGridConsumo;
+begin
+  btAddItem.Enabled := false;
+  btRemItem.Enabled := false;
+  btMaisUm.Enabled := false;
+  btMenosUm.Enabled := false;
+
+  qConsumo.Close;
+  gConsumo.Enabled := false;
+
+  lblConsumo.Caption := 'R$ 0.00';
+end;
+
+// -----------------------------------------------------------------------------
+procedure TfrmPrincipal.qConsumoAfterOpen(DataSet: TDataSet);
+var condicao: boolean;
+begin
+  condicao := (DataSet.RecordCount > 0);
+
+  btAddItem.Enabled := true;
+  btRemItem.Enabled := condicao;
+  btMaisUm.Enabled := condicao;
+  btMenosUm.Enabled := condicao;
+
+  gConsumo.Enabled := condicao;
+end;
+
+// -----------------------------------------------------------------------------
+
+// Adiciona novo produto a lista de itens consumidos
+procedure TfrmPrincipal.btAddItemClick(Sender: TObject);
+const
+  sql1 = 'INSERT INTO movimentacao_consumo (' +
+         'id_movimentacao, id_produto, produto, quantidade, valor_unitario) ' +
+         'VALUES (%s, %s, "%s", %s, %s)';
+  sql2 = 'UPDATE movimentacao_consumo SET quantidade=quantidade+%s ' +
+         'WHERE id_movimentacao=%s AND id_produto=%s';
+
+var
+  id_mov, id_prod, nome_prod, qtde, valor: string;
+  produto_ja_existe: boolean;
+begin
+  frmLocalizarProdutos := TfrmLocalizarProdutos.Create(Self);
+
+  try
+    if frmLocalizarProdutos.ShowModal=mrOk then
+    begin
+      with frmLocalizarProdutos do
+      begin
+        id_prod   := qProdutos.FieldByName('id').AsString;
+        nome_prod := qProdutos.FieldByName('nome').AsString;
+        qtde      := edtQtde.Text;
+        valor     := qProdutos.FieldByName('valor').AsString;
+      end;
+    end
+    else
+      exit;
+  finally
+    frmLocalizarProdutos.Release;
+    frmLocalizarProdutos := nil;
+  end;
+
+  id_mov := qry.FieldByName('ativo').AsString;
+  produto_ja_existe := false;
+
+  // Verifica se o produto ja exite na query qConsumo
+  if qConsumo.RecordCount>0 then
+  begin
+    qConsumo.First;
+    repeat
+      if qConsumo.FieldByName('id_produto').AsString=id_prod then
+      begin
+        produto_ja_existe := true;
+        break;
+      end;
+      qConsumo.Next;
+    until qConsumo.Eof;
+  end;
+
+  if produto_ja_existe then
+    dmPrincipal.zconn.ExecuteDirect(Format(sql2, [qtde, id_mov, id_prod]))
+  else
+    dmPrincipal.zconn.ExecuteDirect(Format(sql1, [id_mov, id_prod, nome_prod, qtde, valor]));
+
+  AtivaGridConsumo;
+end;
+
+// Remove um produto da lista de itens consumidos
+procedure TfrmPrincipal.btRemItemClick(Sender: TObject);
+begin
+  dmPrincipal.zconn.ExecuteDirect(
+    'DELETE FROM movimentacao_consumo WHERE id=' +
+    qConsumo.FieldByName('id').AsString
+  );
+  AtivaGridConsumo;
+end;
+
+procedure TfrmPrincipal.btMaisUmClick(Sender: TObject);
+begin
+  dmPrincipal.zconn.ExecuteDirect(
+    'UPDATE movimentacao_consumo SET quantidade=quantidade+1 '+
+    'WHERE id=' + qConsumo.FieldByName('id').AsString
+  );
+  AtivaGridConsumo;
+end;
+
+procedure TfrmPrincipal.btMenosUmClick(Sender: TObject);
+begin
+  dmPrincipal.zconn.ExecuteDirect(
+    'UPDATE movimentacao_consumo SET quantidade=quantidade-1 '+
+    'WHERE id=' + qConsumo.FieldByName('id').AsString
+  );
+  AtivaGridConsumo;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmPrincipal.grdMovimentoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+   sRegionType : String;
+   grdGrid: TDBGrid;
+begin
+  if qry.RecordCount=0 then
+    exit;
+
+  sRegionType := Column.Field.AsString;
+  grdGrid := TDBGrid(Sender);
+
+  if qry.FieldByName('ativo').AsInteger>0 then
+  begin
+    if gdSelected in State then
+    begin
+      grdGrid.Canvas.Brush.Color := clRed;
+      grdGrid.Canvas.Font.Color := clWhite;
+    end
+    else
+    begin
+      grdGrid.Canvas.Brush.Color := $00F0E0FF;
+      grdGrid.Canvas.Font.Color := clRed;
+    end;
+  end
+  else
+  begin
+    if gdSelected in State then
+      grdGrid.Canvas.Font.Color := clWhite
+    else
+      grdGrid.Canvas.Font.Color := clGreen
+  end;
+
+  grdGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+
+
+procedure TfrmPrincipal.grdMovimentoDblClick(Sender: TObject);
+begin
+  if qry.FieldByName('ativo').AsInteger > 0 then
+    btnFechamentoClick(Self)
+  else
+    btnAberturaClick(Self);
 end;
 
 end.

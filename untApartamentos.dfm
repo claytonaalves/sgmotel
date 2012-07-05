@@ -1,8 +1,9 @@
 inherited frmApartamentos: TfrmApartamentos
-  Left = 152
-  Top = 101
+  Left = 589
+  Top = 181
   Caption = 'Apartamentos'
-  ClientHeight = 355
+  ClientHeight = 370
+  ClientWidth = 377
   Icon.Data = {
     0000010001001010000001001800680300001600000028000000100000002000
     0000010018000000000040030000000000000000000000000000000000000000
@@ -33,170 +34,139 @@ inherited frmApartamentos: TfrmApartamentos
     000080010000E0070000E0070000E0070000E0070000E0070000E0070000E007
     0000E0070000E0070000E0070000E0070000E0070000FFFF0000FFFF0000}
   OldCreateOrder = True
-  OnClose = FormClose
   PixelsPerInch = 96
-  TextHeight = 14
-  object Shape1: TShape [0]
-    Left = 8
-    Top = 185
-    Width = 467
-    Height = 36
-    Brush.Color = clSilver
+  TextHeight = 13
+  inherited bvl1: TBevel
+    Left = 5
+    Top = 329
+    Width = 366
   end
-  object lblCodigo: TLabel [1]
-    Left = 18
-    Top = 195
-    Width = 49
-    Height = 14
-    Caption = 'C'#243'digo:'
-    Transparent = True
+  object sh1: TShape [1]
+    Left = 5
+    Top = 254
+    Width = 367
+    Height = 35
+    Brush.Color = 15790320
   end
-  object lblCodigoNum: TLabel [2]
-    Left = 97
-    Top = 195
-    Width = 5
+  object Label1: TLabel [2]
+    Left = 10
+    Top = 257
+    Width = 37
     Height = 13
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -12
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
+    Caption = 'Numero'
     Transparent = True
   end
-  object Shape3: TShape [3]
-    Left = 8
-    Top = 220
-    Width = 467
-    Height = 38
-    Brush.Color = clInfoBk
+  object sh2: TShape [3]
+    Left = 5
+    Top = 288
+    Width = 367
+    Height = 35
+    Brush.Color = 15790320
   end
-  object lblNome: TLabel [4]
-    Left = 18
-    Top = 232
-    Width = 35
-    Height = 14
-    Caption = 'Apto:'
+  object Label2: TLabel [4]
+    Left = 10
+    Top = 291
+    Width = 21
+    Height = 13
+    Caption = 'Tipo'
     Transparent = True
   end
-  object Shape4: TShape [5]
-    Left = 8
-    Top = 256
-    Width = 467
-    Height = 37
-    Brush.Color = clInfoBk
+  inherited bvl2: TBevel
+    Left = 5
+    Top = 246
+    Width = 366
   end
-  object lblQtde: TLabel [6]
-    Left = 18
-    Top = 266
-    Width = 35
-    Height = 14
-    Caption = 'Tipo:'
-    Transparent = True
+  inherited grd01: TDBGrid
+    Width = 366
+    Height = 237
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'apartamento'
+        Title.Caption = 'Apartamento'
+        Width = 154
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'tipo'
+        Title.Caption = 'Tipo'
+        Width = 187
+        Visible = True
+      end>
   end
-  inherited btnNovo: TBmsXPButton
-    Left = 23
-    Top = 317
-    ExplicitLeft = 23
-    ExplicitTop = 317
+  inherited btNovo: TPngBitBtn
+    Left = 6
+    Top = 336
   end
-  object cmbTipo: TComboBox [9]
+  inherited btAlterar: TPngBitBtn
     Left = 94
-    Top = 263
-    Width = 243
-    Height = 19
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    Color = clInfoBk
-    Ctl3D = False
-    Enabled = False
-    ItemHeight = 0
-    ParentCtl3D = False
-    TabOrder = 6
+    Top = 336
   end
-  object edtNome: TEdit [10]
-    Left = 97
-    Top = 233
-    Width = 354
-    Height = 18
+  inherited btExcluir: TPngBitBtn
+    Left = 182
+    Top = 336
+  end
+  inherited btFechar: TPngBitBtn
+    Left = 270
+    Top = 336
+  end
+  inherited btGravar: TPngBitBtn
+    Left = 198
+    Top = 335
+  end
+  inherited btCancelar: TPngBitBtn
+    Left = 286
+    Top = 335
+  end
+  object edtNome: TEdit [13]
+    Left = 20
+    Top = 272
+    Width = 325
+    Height = 16
     TabStop = False
     BorderStyle = bsNone
-    Color = clInfoBk
+    CharCase = ecUpperCase
+    Color = 15790320
     Ctl3D = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
-    MaxLength = 50
+    MaxLength = 3
     ParentCtl3D = False
     ParentFont = False
     ReadOnly = True
     TabOrder = 7
+    Text = '01'
+    OnChange = EditsChange
+    OnKeyPress = EditsJustNumbers_KeyPress
   end
-  inherited btnAlterar: TBmsXPButton
-    Left = 111
-    Top = 317
-    ExplicitLeft = 111
-    ExplicitTop = 317
-  end
-  inherited btnExcluir: TBmsXPButton
-    Left = 200
-    Top = 317
-    ExplicitLeft = 200
-    ExplicitTop = 317
-  end
-  inherited btnFechar: TBmsXPButton
-    Left = 375
-    Top = 317
-    ExplicitLeft = 375
-    ExplicitTop = 317
-  end
-  inherited grd01: TDBGrid
-    Top = 60
-    Height = 118
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'codigo'
-        Title.Caption = 'C'#243'digo'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'AP.nome'
-        Title.Caption = 'Apartamento'
-        Width = 185
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'TI.nome'
-        Title.Caption = 'Tipo'
-        Width = 162
-        Visible = True
-      end>
+  object cmbTipo: TComboBox [14]
+    Left = 48
+    Top = 295
+    Width = 305
+    Height = 21
+    Style = csDropDownList
+    Enabled = False
+    ItemHeight = 13
+    Sorted = True
+    TabOrder = 8
+    OnChange = EditsChange
   end
   inherited ds01: TDataSource
-    Left = 376
-    Top = 135
+    Top = 199
   end
-  inherited qry01: TZQuery
+  inherited zquery: TZQuery
     SQL.Strings = (
-      
-        'SELECT AP.codigo, AP.nome, TI.nome FROM apartamentos AP, tipos_a' +
-        'pto TI'
-      'WHERE AP.cod_tipo_apto=TI.codigo')
-    Left = 344
-    Top = 135
+      'SELECT ap.nome as apartamento, tp.nome as tipo, ap.id_tipo_apto'
+      'FROM apartamentos ap '
+      'LEFT JOIN apartamentos_tipos tp on ap.id_tipo_apto=tp.id;'
+      'ORDER BY ap.nome')
+    Top = 200
   end
-  object qryTipos: TADOQuery
-    Connection = dmPrincipal.conn
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT codigo, nome FROM tipos_apto')
-    Left = 344
-    Top = 104
+  inherited Timer1: TTimer
+    Top = 160
   end
 end

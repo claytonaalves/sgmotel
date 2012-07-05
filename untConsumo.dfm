@@ -1,432 +1,548 @@
-inherited frmResumo: TfrmResumo
-  Left = 868
-  Top = 250
+inherited frmConsumo: TfrmConsumo
+  Left = 117
+  Top = 58
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Informa'#231#245'es do Apartamento xx'
-  ClientHeight = 400
-  ClientWidth = 289
+  Caption = 'Lan'#231'ar Consumo'
+  ClientHeight = 423
+  ClientWidth = 417
   Icon.Data = {
     0000010001001010000001001800680300001600000028000000100000002000
     0000010018000000000040030000000000000000000000000000000000000000
+    000000000000007CB57F00000000000000000000000000000000000000000000
+    000000000000000000000000000000000000000095C59861A7666BAE6F4F9953
     0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000B7B7B7AEAEAE3071A92C6EA6286BA3
-    2468A021669E1D639B1A6199175F97145C94115B936C6C6C6C6C6C0000000000
-    000000000000003675AD86B6D883B3D781B2D67DAFD57BADD479ABD376AAD274
-    A8D1155D950000000000000000000000000000000000003C79B18BB9DA66A2CE
-    62A0CD5F9DCB5B9AC95897C85495C777ABD31960980000000000000000000000
-    00000000000000427DB58FBDDC6CA7D067A4CF64A1CD609ECC5C9BCA5999C97B
-    ADD41E649C0000000000000000000000000000000000004882BA93C0DD71ABD2
-    6DA8D169A5CF66A2CE629FCC5E9CCB7FB0D523679F0000000000000000000000
-    000000000000004E86BE98C3DF77AFD573ACD36FA9D26BA7D05BB7E354C2ED81
-    B4D7286BA3000000000000000000000000000000000000538AC29CC6E17CB3D7
-    79B1D575ADD471ABD25FBAE44BD4FF7CBBE02E6FA70000000000000000000000
-    00000000000000598EC6A0C9E382B8D97EB5D87AB2D677AFD573ACD36DABD48C
-    BADA3373AB0000000000000000000000000000000000005E91C9A4CCE487BBDB
-    84B9DA80B6D87CB3D779B0D574ADD48FBDDC3977AF0000000000000000000000
-    000000000000006395CDA8CFE58CBFDD88BDDC85BADB81B7D97EB4D77AB2D694
-    C1DD3F7CB40000000000000000000000000000000000006798D0ABD1E790C2DF
-    8DC0DE8ABEDC87BBDB83B8DA80B6D899C4E04580B80000000000000000000000
-    000000000000006B9BD3AED4E8ABD3E8AAD1E7A8CFE5A5CDE4A2CBE4A0C9E29D
-    C7E14B84BC0000000000000000000000000000000000006E9DD56C9BD3699AD2
-    6697CF6395CD6093CB5C90C8598EC6558BC35188C00000000000000000000000
+    000000007EBC82B7DEBB67AC6C75B67A4F985283B88600000000000000000000
+    0000000000000000000000000000000000ABD3AE9CCDA06FB2738DC792AADCAF
+    76B67B519B5577B77B67A76A0000000000000000000000000000000000000000
+    007BBB8077B77C91CB97ABDEB19CD7A2AADDB077B77C60AC65AED8B28BC4917D
+    B480000000000000000000000000AFD6B27FBD8497CE9CADDFB36FB37496D59D
+    9DD8A3AADDB078B87C72BA76C3E7C8B2DAB56DBA72569E590000000000007BBB
+    808EC893AFDFB5A1DAA798D79F97D69E7EC08382C187ABDDB079B97D63AE67C4
+    E7C8C1E4C4B9E0BE4F9A530000000000007DBB828FC894B0E0B6A2DAA87FC185
+    A4D0A7DDEEDF80B883ABDEB17AB97F569F5AC4E7C878B87CA3CAA50000000000
+    0000000080BD8490C995B0E0B685C28AF7FCF895C297DDEEDF82C287ABDEB17B
+    BA7F58A05C59A15D00000000000000000000000000000083BF8791CA96B1E0B6
+    D9F3DDF7FCF8A4D0A77EC0849FD9A5ACDEB27BBB8059A15D0000000000000000
+    0000000000000000000084C18A92CB97B1E1B685C38A80C18599D7A098D79F9F
+    D9A5ACDFB27DBB815EA36200000000000000000000000000000000000086C28B
+    93CC98B1E1B7A3DBA99BD8A273B477AFDFB487C38C65AA690000000000000000
+    0000000000000000000000000000000087C28C94CC99B2E2B7A3DCAAB0E0B68C
+    C6926EB173000000000000000000000000000000000000000000000000000000
+    00000088C38D94CD9AB3E2B793CB9877B77C0000000000000000000000000000
+    0000000000000000000000000000000000000000000089C48F96CD9B80BE8500
     0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000000000000000000000000000000000000000000000000000FFFF
-    000080010000E0070000E0070000E0070000E0070000E0070000E0070000E007
-    0000E0070000E0070000E0070000E0070000E0070000FFFF0000FFFF0000}
+    0000000000000000008BC590000000000000000000000000000000000000EFFF
+    0000C3FF0000C0FF0000803F0000800F0000000300000001000080010000C003
+    0000E0030000F0010000F8030000FC070000FE0F0000FF1F0000FFBF0000}
   OldCreateOrder = True
   Position = poOwnerFormCenter
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object XiPanel1: TXiPanel
-    Left = 0
-    Top = 0
-    Width = 289
-    Height = 401
-    ColorFace = clWhite
-    ColorGrad = 10805759
-    ColorLight = 36821
-    ColorDark = 27035
-    ColorScheme = csDesert
-    FillDirection = fdVertical
+  object Shape8: TShape
+    Left = 7
+    Top = 45
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object Shape2: TShape
+    Left = 8
+    Top = 295
+    Width = 201
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object Label2: TLabel
+    Left = 19
+    Top = 307
+    Width = 74
+    Height = 13
+    Caption = 'Total Consumo:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblConsumo: TLabel
+    Left = 107
+    Top = 305
+    Width = 52
+    Height = 16
+    Caption = 'R$ 0,00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Bevel1: TBevel
+    Left = 9
+    Top = 374
+    Width = 400
+    Height = 2
+  end
+  object Shape3: TShape
+    Left = 8
+    Top = 329
+    Width = 402
+    Height = 35
+    Brush.Color = clRed
+  end
+  object Label1: TLabel
+    Left = 19
+    Top = 341
+    Width = 68
+    Height = 13
+    Caption = 'Total Geral:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Shape4: TShape
+    Left = 208
+    Top = 295
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object Label3: TLabel
+    Left = 219
+    Top = 307
+    Width = 89
+    Height = 13
+    Caption = 'Valor do Momento:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblValor_Apto: TLabel
+    Left = 322
+    Top = 305
+    Width = 52
+    Height = 16
+    Caption = 'R$ 0,00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object lblTotal: TLabel
+    Left = 107
+    Top = 341
+    Width = 52
+    Height = 16
+    Caption = 'R$ 0,00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Shape1: TShape
+    Left = 208
+    Top = 11
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object Shape5: TShape
+    Left = 7
+    Top = 11
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object lbl01: TLabel
+    Left = 16
+    Top = 22
+    Width = 79
+    Height = 13
+    Caption = 'Apartamento:'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Lucida Console'
+    Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
+    Transparent = True
+  end
+  object Shape6: TShape
+    Left = 208
+    Top = 45
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object lblApto: TLabel
+    Left = 105
+    Top = 22
+    Width = 51
+    Height = 16
+    Caption = 'lblApto'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -13
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object lbl02: TLabel
+    Left = 217
+    Top = 22
+    Width = 29
+    Height = 13
+    Caption = 'Tipo:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblTipo: TLabel
+    Left = 297
+    Top = 22
+    Width = 47
+    Height = 16
+    Caption = 'lblTipo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -13
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Shape7: TShape
+    Left = 208
+    Top = 79
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object lbl04: TLabel
+    Left = 217
+    Top = 89
+    Width = 46
+    Height = 13
+    Caption = 'Ve'#237'culo:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label4: TLabel
+    Left = 217
+    Top = 55
+    Width = 37
+    Height = 13
+    Caption = 'Sa'#237'da:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblEntrada: TLabel
+    Left = 105
+    Top = 56
+    Width = 67
+    Height = 13
+    Caption = 'lblEntrada'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object lbl03: TLabel
+    Left = 16
+    Top = 55
+    Width = 49
+    Height = 13
+    Caption = 'Entrada:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Shape9: TShape
+    Left = 7
+    Top = 79
+    Width = 202
+    Height = 35
+    Brush.Color = clSkyBlue
+  end
+  object Label5: TLabel
+    Left = 16
+    Top = 89
+    Width = 77
+    Height = 13
+    Caption = 'Transcorrido:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object lblTranscorrido: TLabel
+    Left = 105
+    Top = 91
+    Width = 100
+    Height = 13
+    Caption = 'lblTranscorrido'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object lblSaida: TLabel
+    Left = 297
+    Top = 56
+    Width = 52
+    Height = 13
+    Caption = 'lblSaida'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object lblVeiculo: TLabel
+    Left = 297
+    Top = 91
+    Width = 63
+    Height = 13
+    Caption = 'lblVeiculo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object btnFechar: TBitBtn
+    Left = 276
+    Top = 386
+    Width = 125
+    Height = 30
+    Cancel = True
+    Caption = '&Fechar'
+    ModalResult = 2
+    TabOrder = 1
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFC1BFCE80819880809980809980809981809880809BC0C1C8FFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFC1CB0904B53030DC322FDC32
+      2FDC322FDC332EDC3230DC0A05B6BFBFCBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      BFBFCC0D09AC3436DB0A0CD20A0CD20A0CD20A0CD2080CD20C0BD23037DA0E0A
+      A9BFBFCEFFFFFFFFFFFFFFFFFFC0C0CC0D0EBA393BDE1815D31813D51713D717
+      13D71713D71216D50E13DA1716D43A39DF110EB8BFC1CBFFFFFFC0BFE61A17A9
+      4849E4191BD51618DB1819DA191AD9191AD9191AD91819D81B1BD61819D9191A
+      D94548E61B13ADC4C0E88080BF504EE62121E42726E12424DD1F25D82224DD22
+      24DD2224DD2224DD2224DC2224DC2224DC2722DD4A51E48280BD8382CC6A69EB
+      2A2AE32928E22B2CDF292BE3292AE2292AE2292AE2292AE1292AE1292AE1292A
+      E12C2AE26A6AEB8380D08282CF8386F4302EE72F30E42E2CE72F2DE7302EE730
+      2EE7302EE72F2EE72F2EE72F2EE72F2EE72C2FE58784F48282D28080CA9294F8
+      383BEB3C3AED393DEA393BEC3B3CEB3B3CEB3B3CEB3C3BEC3B3CE83A3CE83B3B
+      EA3D3AEB9394F58080CA8182CFABA7FC3B3DEE443EF34040EC3F3DF03F3DF03F
+      3DF03F3DF03F3EEF3F3BF53D3CF13D3EF0363FEEB0A4FF8081D08280CFADB3FC
+      4E4EF44A4EEF4D4CF54B4DF54B4DF34B4DF34B4DF34B4DF14E4EEF514BF54E4A
+      F34F4CF4B4B5FB8080CCC1C0E97572E59399FC5D55FB5355F75657F85457F654
+      57F65457F65558F85158F85155FB5B54F6949AF97B75E3BFBFEBFFFFFFC1C0E4
+      7B73E3A8AEFA5C5BF85A5BFC5A5BFC5A5BFC5A5BFC5A5AF95B5BFA605BF9ADAD
+      F97C72E1C0C0E6FFFFFFFFFFFFFFFFFFC0C0EC7673E1A29FFC6363F96261FD62
+      61FD6261FD6560FE6562FC9A9EFB6364E4BFBFEBFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFC0BFE57674E4BDBFFFBFBEFFBFBEFFBFBEFFBEBFFEC0BEFD7473E2BFC0
+      E6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFBFEA8180D48280D582
+      80D58280D58180D58080DBC1BFE9FFFFFFFFFFFFFFFFFFFFFFFF}
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 124
+    Width = 402
+    Height = 161
+    DataSource = DataSource1
+    Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'num_produto'
+        Title.Caption = 'N'#250'mero'
+        Width = 44
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Produto'
+        Width = 156
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quantidade'
+        Title.Caption = 'Qtde'
+        Width = 35
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'valor'
+        Title.Caption = 'Valor Unt.'
+        Width = 72
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Expr1005'
+        Title.Caption = 'Valor Total'
+        Width = 69
+        Visible = True
+      end>
+  end
+  object btnLocProd: TBitBtn
+    Left = 15
+    Top = 386
+    Width = 125
+    Height = 30
+    Cancel = True
+    Caption = 'Lan'#231'ar Produto'
     TabOrder = 0
-    UseDockManager = True
-    object Label2: TLabel
-      Left = 16
-      Top = 220
-      Width = 140
-      Height = 11
-      Caption = 'Total Consumo......:'
-      Transparent = True
-    end
-    object lblConsumo: TLabel
-      Left = 161
-      Top = 220
-      Width = 56
-      Height = 11
-      Caption = 'R$ 0,00'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clRed
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object Label1: TLabel
-      Left = 16
-      Top = 240
-      Width = 140
-      Height = 11
-      Caption = 'Total Geral........:'
-      Transparent = True
-    end
-    object Label3: TLabel
-      Left = 16
-      Top = 86
-      Width = 140
-      Height = 11
-      Caption = 'Valor do Momento...:'
-      Transparent = True
-    end
-    object lblValor_Apto: TLabel
-      Left = 161
-      Top = 86
-      Width = 56
-      Height = 11
-      Caption = 'R$ 0,00'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lblTotal: TLabel
-      Left = 161
-      Top = 240
-      Width = 56
-      Height = 11
-      Caption = 'R$ 0,00'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clRed
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lbl01: TLabel
-      Left = 16
-      Top = 46
-      Width = 140
-      Height = 11
-      Caption = 'Apartamento........:'
-      Transparent = True
-    end
-    object lblApto: TLabel
-      Left = 161
-      Top = 46
-      Width = 16
-      Height = 11
-      Caption = '01'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clRed
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lbl02: TLabel
-      Left = 16
-      Top = 66
-      Width = 140
-      Height = 11
-      Caption = 'Tipo...............:'
-      Transparent = True
-    end
-    object lblTipo: TLabel
-      Left = 161
-      Top = 66
-      Width = 56
-      Height = 11
-      Caption = 'SIMPLES'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lbl04: TLabel
-      Left = 16
-      Top = 183
-      Width = 140
-      Height = 11
-      Caption = 'Ve'#237'culo............:'
-      Transparent = True
-    end
-    object Label4: TLabel
-      Left = 16
-      Top = 143
-      Width = 140
-      Height = 11
-      Caption = 'Previsto Sa'#237'da.....:'
-      Transparent = True
-    end
-    object lblEntrada: TLabel
-      Left = 161
-      Top = 123
-      Width = 40
-      Height = 11
-      Caption = '08:00'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lbl03: TLabel
-      Left = 16
-      Top = 123
-      Width = 140
-      Height = 11
-      Caption = 'Hor'#225'rio de Entrada :'
-      Transparent = True
-    end
-    object Label5: TLabel
-      Left = 16
-      Top = 163
-      Width = 140
-      Height = 11
-      Caption = 'Transcorrido.......:'
-      Transparent = True
-    end
-    object lblTranscorrido: TLabel
-      Left = 161
-      Top = 163
-      Width = 80
-      Height = 11
-      Caption = '45 minutos'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lblSaida: TLabel
-      Left = 161
-      Top = 143
-      Width = 40
-      Height = 11
-      Caption = '10:00'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object lblVeiculo: TLabel
-      Left = 161
-      Top = 183
-      Width = 32
-      Height = 11
-      Caption = 'Moto'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object Label6: TLabel
-      Left = 16
-      Top = 16
-      Width = 198
-      Height = 13
-      Caption = 'Resumo do Apartamento:'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clNavy
-      Font.Height = -13
-      Font.Name = 'Lucida Console'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object Shape2: TShape
-      Left = 16
-      Top = 110
-      Width = 255
-      Height = 1
-      Pen.Color = 36821
-    end
-    object Shape3: TShape
-      Left = 16
-      Top = 207
-      Width = 255
-      Height = 1
-      Pen.Color = 36821
-    end
-    object Shape1: TShape
-      Left = 16
-      Top = 262
-      Width = 255
-      Height = 1
-      Pen.Color = 36821
-    end
-    object BmsXPButton1: TBmsXPButton
-      Left = 48
-      Top = 356
-      Width = 185
-      Height = 30
-      Glyph.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000F10000F10000F100
-        00F10000EF0000EF0000ED0000EDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFF0000F51A20F53C4CF93A49F83847F83545F83443F73242F7141BF10000
-        EDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000F71D23F94453FA2429F91212F70F
-        0FF60C0CF50909F5161BF53343F7141BF10000EDFFFFFFFFFFFFFFFFFF0000F9
-        1F25FA4A58FB4247FBC9C9FD3B3BF91313F71010F63333F7C5C5FD3035F73444
-        F7141BF20000EDFFFFFFFFFFFF0000FB4F5DFD3237FBCBCBFEF2F2FFEBEBFE3B
-        3BF93939F8EAEAFEF1F1FEC5C5FD181DF63343F70000EFFFFFFFFFFFFF0000FD
-        525FFD2828FC4747FCECECFFF2F2FFECECFFECECFEF1F1FFEAEAFE3434F70B0B
-        F53545F80000EFFFFFFFFFFFFF0000FD5562FE2C2CFD2929FC4848FCEDEDFFF2
-        F2FFF2F2FFECECFE3A3AF91212F70F0FF63848F80000F1FFFFFFFFFFFF0000FD
-        5764FE3030FD2D2DFD4B4BFCEDEDFFF2F2FFF2F2FFECECFF3D3DF91616F81313
-        F73C4BF80000F1FFFFFFFFFFFF0000FF5A67FE3333FE5050FDEDEDFFF3F3FFED
-        EDFFEDEDFFF2F2FFECECFE3E3EFA1717F83F4EF90000F1FFFFFFFFFFFF0000FF
-        5B68FF4347FECFCFFFF3F3FFEDEDFF4C4CFC4A4AFCECECFFF2F2FFCACAFE2A2F
-        FA4251FA0000F3FFFFFFFFFFFF0000FF262BFF5D6AFF585BFFCFCFFF5252FE2F
-        2FFD2C2CFD4B4BFCCCCCFE484CFB4957FB1D23F90000F5FFFFFFFFFFFFFFFFFF
-        0000FF262BFF5D6AFF4347FF3434FE3232FE3030FD2D2DFD383CFC4F5DFC1F25
-        FA0000F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF262BFF5C69FF5B68FF5A
-        67FE5865FE5663FE5461FE2227FC0000FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFF0000FF0000FF0000FF0000FF0000FD0000FD0000FD0000FDFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      Caption = '&Fechar'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      ModalResult = 2
-      Layout = blGlyphLeft
-      WordWrap = False
-      ShowAccelChar = True
-      ParentFont = False
-      TabOrder = 0
-    end
-    object BmsXPButton2: TBmsXPButton
-      Left = 16
-      Top = 310
-      Width = 257
-      Height = 30
-      Glyph.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1D639B196098145D95105A
-        920D5890135C920C578F9999997171715454545151514F4F4F4C4C4C4A4A4A47
-        474745454525679D3274A83D7CAF4784B54E8ABA3E7EAD0C578FFFFFFFFFFFFF
-        585858A2A2A2A2A2A2A3A3A3A4A4A4A4A4A4A5A5A52F6FA578ABD278ABD373A7
-        D169A0CD407FAE0F5991FFFFFFFFFFFF5C5C5CA0A0A03C3C72A2A2A2A3A3A3A3
-        A3A3A4A4A43674AA7DAFD45B9AC95495C75896C84180AE135C94FFFFFFFFFFFF
-        6060603939753C3C75A1A1A1A2A2A2A2A2A2A3A3A33D79B082B3D7629FCC5A9A
-        C95E9BCA4381AF196098FFFFFFFFFFFF3939754C4C9348488E27276B25256823
-        2366202060457EB488B7D967A3CF619ECC639FCC4583B11F649CFFFFFF374278
-        55559B7F7FC47C7CC17676BF7171BC6F6FBA2323664C84BA8DBBDB6EA8D166A6
-        D15FB4DF4785B12569A13D51775D5DA38C8CCC7D7DC47272BF6F6FBC6A6ABA74
-        74BC27276B5489BF94BFDD75ADD463B8E14BD4FF428BB82C6EA6FFFFFF3D487F
-        6060A58C8CCC8888C98585C67F7FC47C7CC129296D5A8EC498C3E07CB3D774AF
-        D65EC4ED4B88B33473ABFFFFFFFFFFFF4646876060A55D5DA336367F34347C31
-        31772D2D726092C99EC7E283B8DA7DB4D77EB3D74F89B43B79B1FFFFFFFFFFFF
-        7777774D4D8E3D3D899B9B9B9C9C9C9D9D9D9D9D9D6696CCA2CBE389BDDC83B9
-        DA84B9DA518BB5437EB6FFFFFFFFFFFF7A7A7A98999851518E9A9A9A9B9B9B9C
-        9C9C9C9C9C6C9AD0A7CEE58FC1DF89BDDC8BBDDC538DB64B84BCFFFFFFFFFFFF
-        7D7D7D9999999999999A9A9A9A9A9A9B9B9B9B9B9B6F9DD3AAD1E7ABD1E798C7
-        E191C2DE568FB75289C1FFFFFFFFFFFF8080807E7E7E7C7C7C7A7A7A77777775
-        7575727272719ED46F9ED687B2DCABD3E8A9D0E65890B8598EC6FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF709ED66D9C
-        D485B1DA5A91B96093CBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6D9CD46A9AD26697CF}
-      Caption = 'Lan'#231'ar Fechamento do Apto'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      ModalResult = 2
-      Layout = blGlyphLeft
-      WordWrap = False
-      ShowAccelChar = True
-      ParentFont = False
-      TabOrder = 1
-    end
-    object BmsXPButton3: TBmsXPButton
-      Left = 15
-      Top = 277
-      Width = 258
-      Height = 30
-      Glyph.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
-        FFFFFF8686868181817D7D7DFFFFFFFFFFFFFFFFFFFFFFFF6868686565656262
-        62FFFFFFFFFFFFFFFFFFFFFFFF959595909090ACACACC9C9C9A6A6A67E7E7E79
-        7979757575717171999999C5C5C5959595626262FFFFFFFFFFFFFFFFFF9A9A9A
-        FFFFFF9191918C8C8C888888FFFFFFFFFFFFFFFFFFFFFFFF7171716D6D6D6A6A
-        6A666666FFFFFFFFFFFFFFFFFFA0A0A09B9B9B9797979292928D8D8D88888884
-        84847F7F7F7B7B7B767676727272FFFFFF6A6A6AFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7777777373
-        736F6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA1A1A19D9D9D9898989393938F
-        8F8F8A8A8A8585858181817F7F7FB1B1B1747474FFFFFFFFFFFFFFFFFFFFFFFF
-        ABABABCACACADADADAB2B2B2D7D7D7AAAAAAD3D3D3A3A3A3D0D0D09B9B9BCCCC
-        CC787878FFFFFFFFFFFFFFFFFFFFFFFFB0B0B0F4F4F4B9B9B9A3A3A3B2B2B29A
-        9A9AABABAB909090A4A4A48787879C9C9C7E7E7EFFFFFFFFFFFFFFFFFFB8B8B8
-        D2D2D2C0C0C0DEDEDEBABABADADBDA088736389551ACACACD4D4D4A4A4A4D0D0
-        D08989897E7E7EFFFFFFFFFFFFBCBCBCC6C6C6B5B5B5C1C1C1ADADAD1A904746
-        A56848A5660D7F29ACACAC929292A5A5A59A9A9A848484FFFFFFC2C2C2D8D8D8
-        E3E3E3C7C7C7E1E1E12898574FAB748AC7A182C29746A36257A16AACACACD4D4
-        D4ABABAB898989FFFFFFC4C4C4FCFCFCF9F9F9F9F9F9319F655AB38191CBAA74
-        BC906AB68580C19643A15F147F2CF1F1F1D8D8D88F8F8F8A8A8AC5C5C5C5C5C5
-        C3C3C3C0C0C042A5713CA16A55AF7C90CBA888C59E3A9F5E0E86350D802BC5C5
-        C5FBFBFBE4E4E4909090FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF33A16794
-        CDAD8DC8A5158F43FFFFFFFFFFFFA3A3A39E9E9E9A9A9A959595FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFF37A36D96CEB090CAA91B9149FFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3DA56F37
-        A36B299B5B219751FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      Caption = 'Lan'#231'ar Consumo de Produtos'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      ModalResult = 2
-      Layout = blGlyphLeft
-      WordWrap = False
-      ShowAccelChar = True
-      ParentFont = False
-      TabOrder = 2
-    end
+    OnClick = btnLocProdClick
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF145D95105A92FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF22669E1B629A2267
+      9D115B93FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFF3272AA2B6DA5558DBC89B5DD185F97FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF447FB73C79B16497C59DC1E46699
+      C71F659DFFFFFFFFFFFFFFFFFFFFFFFFDDB28FD9AE8AD6A985D3A57FD0A07BCD
+      9C76A2938A75A2CCABCBE876A4CE3070A8286BA3FFFFFFFFFFFFFFFFFFE4BD9B
+      E1B896E8C9AEF5E1CDF7E5D3F7E5D1F3DDC8DFBA9CC7A89186AED5417DB53977
+      AFFFFFFFFFFFFFFFFFFFFFFFFFE8C3A2EDD0B7F8E8D9F5DEC8F3D8BDF3D6BBF4
+      DBC2F7E4D2DFBB9D9D94924B84BCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFECC8A8
+      F7E7D7F6E1CCF4DBC2F4DAC0F3D8BDF3D7BBF4DBC2F3DEC9CD9F7BFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFF0CEAEF9ECDFF5DFC8F5DDC6F4DCC3F4DAC1F3
+      D9BEF3D7BDF8E6D3D3A57FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4D3B4
+      F9EDE1F6E1CCF5DFC9F5DEC7F4DCC4F4DBC2F4DAC0F8E7D6D7AA86FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFF7D7B9F9EBDEF7E7D6F6E1CCF5E0CAF5DEC8F5
+      DDC5F6E1CBF5E2D0DBB08CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFADBBD
+      F8E2CCFAEEE3F7E7D6F6E2CEF6E1CBF6E3D0F9EADDECCFB5DFB693FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFCDEC0FADBBEF9E2CDFAECDEF9EEE2F9EDE2F8
+      E9DAF0D5BDE7C09FE3BC9AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FCDEC1FADCBFF9D9BBF6D6B8F4D3B4F1CFAFEECBABEBC6A6FFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+  end
+  object btnExcProd: TBitBtn
+    Left = 145
+    Top = 386
+    Width = 125
+    Height = 30
+    Cancel = True
+    Caption = 'Excluir Produto'
+    TabOrder = 3
+    OnClick = btnExcProdClick
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3F3DED3B38EBFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF211FE31E1CE2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      4A47F04F4CF2403EED3C39EBFFFFFFFFFFFFFFFFFFFFFFFF2725E52422E4312F
+      EA1F1DE2FFFFFFFFFFFFFFFFFF5451F35856F56361FA5855F6413FED3D3AECFF
+      FFFFFFFFFF302DE72C2AE6413FF14C4AF6312FEA1F1DE2FFFFFFFFFFFF5956F5
+      5B58F66562FA7170FF5956F64240EE3E3BEC3937EB3532E94745F26362FF4A48
+      F42F2DE92220E3FFFFFFFFFFFFFFFFFF5A57F55B59F66663FA7471FF5A58F643
+      41EE3E3CEC504DF46867FF504EF53634EB2A27E5FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF5B58F65C5AF66764FA7472FF7370FF706EFF6E6CFF5755F73F3DEE3230
+      E8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5C59F65D5BF77976FF59
+      56FF5754FF7270FF4846F03C39EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFF615EF85D5AF67D79FF5E5BFF5B58FF7674FF4643EF413FEDFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6967FB6663F9706DFB807EFF7E
+      7BFF7C79FF7977FF5E5CF74744EF4240EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      716EFD6E6BFC7774FD8682FF7673FC6462F8605DF76D6AFA7B79FF605DF74845
+      EF4341EEFFFFFFFFFFFFFFFFFF7673FF7471FE7D7AFE8A87FF7C79FD6C69FB63
+      61F95F5CF7615EF86E6CFA7D7AFF615FF74946F04441EEFFFFFFFFFFFF7774FF
+      7A77FF817EFF817EFE7471FD6C69FBFFFFFFFFFFFF605DF7625FF86F6DFB7E7C
+      FF625FF84A47F04542EEFFFFFFFFFFFF7774FF7A77FF7976FE726FFDFFFFFFFF
+      FFFFFFFFFFFFFFFF615EF86461F86A68F95451F34F4DF2FFFFFFFFFFFFFFFFFF
+      FFFFFF7774FF7774FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF625FF85D5B
+      F75956F5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFF6360F8FFFFFFFFFFFFFFFFFF}
+  end
+  object qryMov_Produtos: TADOQuery
+    Connection = dmPrincipal.conn
+    CursorType = ctStatic
+    AfterOpen = qryMov_ProdutosAfterOpen
+    Parameters = <>
+    SQL.Strings = (
+      
+        'SELECT M.num_produto, P.codigo, P.nome, M.quantidade, P.valor, (' +
+        'M.quantidade * P.valor)'
+      'FROM produtos P, movimento_produtos M'
+      
+        'WHERE P.codigo=M.cod_produto AND M.cod_movimento=1 AND M.ativo=t' +
+        'rue'
+      '')
+    Left = 376
+    Top = 252
+  end
+  object DataSource1: TDataSource
+    DataSet = qryMov_Produtos
+    Left = 344
+    Top = 252
   end
 end

@@ -5,78 +5,140 @@ interface
 uses
   Windows, Messages, SysUtils, StrUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untProto02, StdCtrls, Buttons, ExtCtrls, Grids, DBGrids, DB,
-  ADODB, Math, ComCtrls, BmsXPButton, XiPanel;
+  Math, PngBitBtn, ZAbstractRODataset, ZDataset, Mask, DateUtils,
+  ZSqlProcessor;
 
 type
+  TTipo = record
+    nome,
+    descricao: string;
+    tempo: integer;
+    valor: real;
+  end;
+
+  TMovimentacao = record
+    id: integer;
+    Apartamento: string;
+    Tipo: TTipo;
+    Entrada: string;
+    Saida: string;
+    Veiculo: string;
+    AbertoPor: string;
+    FechadoPor: string;
+    TotalMomento: real;
+    TotalConsumo: real;
+    Desconto: real;
+    TotalGeral: real;
+
+    Transcorrido: string;
+  end;
+
   TfrmFechamento = class(TfrmProto02)
-    qryMov_Produtos: TADOQuery;
-    dsMov_Produtos: TDataSource;
-    qryProdutos: TADOQuery;
-    qryMov_Fluxo: TADOQuery;
-    XiPanel1: TXiPanel;
+    Shape6: TShape;
+    Label2: TLabel;
+    lblConsumo: TLabel;
+    Shape7: TShape;
+    Label3: TLabel;
+    Shape9: TShape;
     Label4: TLabel;
-    Label5: TLabel;
-    Label8: TLabel;
-    Label10: TLabel;
-    lblValor_Apto: TLabel;
-    Label11: TLabel;
+    lblMomCobrado: TLabel;
+    Shape10: TShape;
+    Label6: TLabel;
+    edtDesconto: TEdit;
+    Shape5: TShape;
     lbl01: TLabel;
+    Shape2: TShape;
     lblApto: TLabel;
-    lbl02: TLabel;
     lblTipo: TLabel;
+    Shape3: TShape;
     lbl04: TLabel;
-    lblEntrada: TLabel;
+    Label1: TLabel;
+    Shape8: TShape;
     lbl03: TLabel;
-    Label13: TLabel;
+    Shape4: TShape;
+    Label5: TLabel;
     lblTranscorrido: TLabel;
     lblVeiculo: TLabel;
-    Label14: TLabel;
-    Shape2: TShape;
-    Shape3: TShape;
-    Shape1: TShape;
-    Label1: TLabel;
-    edtSaida: TEdit;
-    Label6: TLabel;
+    Shape11: TShape;
     Label7: TLabel;
-    edtDesconto: TEdit;
-    edtDesconto2: TEdit;
-    grdMov_Produtos: TDBGrid;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Shape5: TShape;
-    Shape6: TShape;
-    Shape4: TShape;
+    edtPago: TEdit;
+    mmoTicket: TMemo;
+    Shape13: TShape;
+    lblEntrada: TLabel;
+    edtTotal: TEdit;
+    Bevel1: TBevel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    Shape1: TShape;
+    Label8: TLabel;
+    lblTroco: TLabel;
+    Shape12: TShape;
+    Label9: TLabel;
+    Label11: TLabel;
+    edtSaida: TMaskEdit;
+    edtValMom: TEdit;
+    qMov: TZReadOnlyQuery;
+    qConsumo: TZReadOnlyQuery;
+    qValMom: TZReadOnlyQuery;
+    Shape14: TShape;
+    Label10: TLabel;
+    lblValor1Mom: TLabel;
+    Shape15: TShape;
+    Label13: TLabel;
+    edtQtdeMom: TEdit;
 
-    procedure FormCreate(Sender: TObject);
-    procedure AtualizaTranscorrido;
     procedure FormShow(Sender: TObject);
-    procedure qryMov_ProdutosAfterOpen(DataSet: TDataSet);
+
+    procedure AtualizaFormulario;
     procedure btnOkClick(Sender: TObject);
     procedure edtDescontoChange(Sender: TObject);
-    procedure edtDesconto2Change(Sender: TObject);
+    procedure edtPagoChange(Sender: TObject);
 
-    procedure ImprimeTicket;
+    procedure PegaMovimentacao;
+    procedure PreencheTicket;
+    procedure edtValMomExit(Sender: TObject);
+    procedure edtQtdeMomExit(Sender: TObject);
 
   private
     { Private declarations }
+    tipo: TTipo;
+
+    Desconto,
+    Total: real;
+    NumMomentos: integer; // Numero de momentos
+
   public
     { Public declarations }
-    sCod_Movimento: string;
-    cValor_Apto: currency;
-
-    sCod_Apto, sData_Ent: string;
-    sData_Sai, sEntrada : string;
-    sConsumo, sVeiculo  : string;
-    sSaida, sDesconto   : string;
+    movimento: TMovimentacao;
 
   end;
 
+const
+  cJustif = #27#97#51;
+  cEject  = #12;
+  cCRLF   = #13#10;
+
+{
+  cJustif     = #27#97#51;
+  cEject      = #12;
+
+  // Tamanho da fonte
+  c10cpi      = #18;
+  c12cpi      = #27#77;
+  c17cpi      = #15;
+  cIExpandido = #14;
+  cFExpandido = #20;
+
+  //Formatação da fonte
+  cINegrito   = #27#71;
+  cFNegrito   = #27#72;
+  cIItalico   = #27#52;
+  cFItalico   = #27#53;
+  cCRLF       = #13#10;
+}
+
 var
   frmFechamento: TfrmFechamento;
-  cTotal, cTotalDesc, cDesc: currency;
-  iMomentos: integer;
-
 
 implementation
 
@@ -86,113 +148,78 @@ uses untDM;
 
 // -----------------------------------------------------------------------------
 
-procedure TfrmFechamento.FormCreate(Sender: TObject);
-var
-   sHora: string;
-
-begin
-  inherited;
-
-   cTotal := 0;
-   cTotalDesc := 0;
-   cDesc := 0;
-
-   // Pega a hora atual
-   sHora := LeftStr(TimeToStr(Time),5);
-   edtSaida.Text := sHora;
-
-end;
-
-// -----------------------------------------------------------------------------
-
 procedure TfrmFechamento.FormShow(Sender: TObject);
 begin
-   inherited;
-
-   AtualizaTranscorrido;
-
-
-   qryMov_Produtos.SQL.Text := 'SELECT M.num_produto, P.codigo, P.nome, M.quantidade, P.valor, (M.quantidade * P.valor) ' +
-                               'FROM produtos P, movimento_produtos M ' +
-                               'WHERE M.ativo=true AND P.codigo=M.cod_produto AND M.cod_movimento=' + sCod_Movimento;
-
-   qryMov_Produtos.Open;
-
-   cTotal := cTotal + (cValor_Apto * iMomentos);
-
-   lblValor_Apto.Caption := Format('%m', [cValor_Apto]);
-   // lblQtdeMomentos.Caption := IntToStr(iMomentos);
-   //lblTotal.Caption := Format('%m', [cTotal]);
-
+  inherited;
+  PegaMovimentacao;
 end;
 
 // -----------------------------------------------------------------------------
 
-procedure TfrmFechamento.AtualizaTranscorrido;
+procedure TfrmFechamento.PegaMovimentacao;
 var
-   h1, h2, iTrans: integer;
-   sHora: string;
+  data1, data2: TDateTime;
+  minTranscorrido: integer;
+  qryAux: TZReadOnlyQuery;
 
 begin
+  qryAux := TZReadOnlyQuery.Create(Self);
+  qryAux.Connection := dmPrincipal.zconn;
 
-   sHora := FormatDateTime('hh:nn', Strtotime(edtSaida.Text));
+  // Abre as queries
+  qMov.ParamByName('id').AsInteger := movimento.id;
+  qMov.Open;
 
-   h1 := StrToInt(Copy(lblEntrada.Caption,1,2))*60 + StrToInt(Copy(lblEntrada.Caption,4,2));
-   h2 := StrToInt(Copy(sHora,1,2))*60 + StrToInt(Copy(sHora,4,2));
+  qConsumo.ParamByName('id').AsInteger := movimento.id;
+  qConsumo.Open;
 
-   iTrans := h2 - h1;
+  qValMom.ParamByName('nome_tipo').AsString := qMov.FieldByName('tipo').AsString;
+  qValMom.Open;
 
-   iMomentos := Trunc(iTrans / 60);
+  data1 := qMov.FieldByName('entrada').AsDateTime;
+  data2 := Now;
 
-   if iMomentos = 0 then
-      iMomentos := 1;
+  movimento.apartamento := qMov.FieldByName('apartamento').AsString;
+  movimento.entrada := qMov.FieldByName('entrada').AsString;
+  movimento.saida := DateTimeToStr(Now);
+  movimento.veiculo := qMov.FieldByName('veiculo').AsString;
+  movimento.Transcorrido := diff(data1, data2);
 
+  // Calcula qual momento sera cobrado
+  minTranscorrido := MinutesBetween(data2, data1);
 
-   lblTranscorrido.Caption := IntToStr(iTrans) + ' minutos';
+  repeat
+    tipo.tempo := qValMom.FieldByName('tempo').AsInteger;
+    tipo.descricao := qValMom.FieldByName('descricao').AsString;
+    tipo.valor := qValMom.FieldByName('valor').AsFloat;
 
-end;
+    if not (minTranscorrido > tipo.tempo) then
+      break
+    else
+      qValMom.Next;
+  until qValMom.Eof;
 
-// -----------------------------------------------------------------------------
+  NumMomentos := 1;
+  if minTranscorrido > tipo.tempo then
+    NumMomentos := (minTranscorrido div tipo.tempo) + 1;
 
-procedure TfrmFechamento.qryMov_ProdutosAfterOpen(DataSet: TDataSet);
-var
-   cConsumo: currency;
+  movimento.TotalMomento := tipo.valor * NumMomentos;
 
-begin
-   inherited;
+  // Calcula total consumo
+  qryAux.SQL.Text := 'SELECT SUM(quantidade*valor_unitario) AS total '+
+                     'FROM movimentacao_consumo WHERE id_movimentacao=:id';
+  qryAux.ParamByName('id').AsInteger := movimento.id;
+  qryAux.Open;
 
-   cConsumo := 0;
+  movimento.TotalConsumo := qryAux.FieldByName('total').AsFloat;
+  movimento.TotalGeral := movimento.TotalMomento + movimento.TotalConsumo;
 
-   if ( DataSet.RecordCount > 0 ) then begin
-
-      with DataSet do begin
-         TNumericField(Fields[4]).DisplayFormat := '#,##0.00';
-         TNumericField(Fields[5]).DisplayFormat := '#,##0.00';
-      end;
-
-      while not DataSet.Eof do begin
-         cConsumo := cConsumo + DataSet.Fields[5].Value;
-         DataSet.Next;
-      end;
-
-      DataSet.FindFirst;
-
-      //lblConsumo.Caption := Format('%m', [cConsumo]);
-
-      cTotal := cConsumo;
-
-   end;
-
+  AtualizaFormulario;
 end;
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmFechamento.btnOkClick(Sender: TObject);
-const
-  cJustif     = #27#97#51;
-  cEject      = #12;
-  cCRLF = #13#10;
-
 var
    sCod_Prod, sCod_Fluxo, Texto: string;
    sImpVeiculo: string;
@@ -201,7 +228,7 @@ var
 
 begin
   inherited;
-
+{
    // Se tiver produtos na listagem
    if ( qryMov_Produtos.RecordCount > 0 ) then begin
 
@@ -227,17 +254,17 @@ begin
       end;
 
    end;
-
+}
 
    // =====================================================
    // Prepara pra atualizar a tabela "movimento_fluxo"
    // =====================================================
 
-   sCod_Apto := QuotedStr(sCod_Apto);
+{   sCod_Apto := QuotedStr(sCod_Apto);
    sData_Ent := QuotedStr(LeftStr(sData_Ent,10));
    sData_Sai := QuotedStr(FormatDateTime('dd/mm/yyyy',Date()));
    sEntrada  := QuotedStr(LeftStr(sEntrada,5));
-   sSaida    := QuotedStr(LeftStr(edtSaida.Text,5));
+//   sSaida    := QuotedStr(LeftStr(edtHoraSaida.Text,5));
    sConsumo  := QuotedStr(CurrToStr(cTotal - cDesc));
 
 
@@ -272,7 +299,7 @@ begin
    // Pega o codigo do fluxo que acabou de ser gerado
    // =====================================================
 
-   qryMov_Fluxo.Active := false;
+{   qryMov_Fluxo.Active := false;
    qryMov_Fluxo.SQL.Clear;
    qryMov_Fluxo.SQL.Text := 'SELECT codigo FROM movimento_fluxo ORDER BY codigo';
    qryMov_Fluxo.Open;
@@ -283,7 +310,7 @@ begin
    iCod_Fluxo := qryMov_Fluxo.Fields[0].Value;
 
    qryMov_Fluxo.Active := false;
-
+}
 
    // =====================================================
    // Atualiza a tabela "movimento_produto"
@@ -293,7 +320,7 @@ begin
    // Essa tabela contem a listagem de produtos consumidos
    // pelos apartamentos
    // =====================================================
-
+{
    dmPrincipal.conn.Execute('UPDATE movimento_produtos SET cod_fluxo=' + sCod_Fluxo + ', ativo=false WHERE cod_movimento=' + sCod_Movimento + ' AND ativo=true');
 
 
@@ -318,12 +345,12 @@ begin
    // =====================================================
 
     Texto := #27 + 'x' + #0 + #15 + cCRLF +
-    //Texto := '' +
+    // Texto := '' +
     '--------------------------------------------------' + cCRLF +
     '           A.M. LOCACAO DE APARTAMENTOS           ' + cCRLF +
     '--------------------------------------------------' + cCRLF +
     'Doc/emi: ' + format('%.6d', [iCod_Fluxo]) + '      ' + MidStr(sData_Sai,2,10) + '      Dp: 0000000-0' + cCRLF +
-    'Vend...: ' + sOperador + cCRLF +
+    'Vend...: *********                                ' + cCRLF +
     '--------------------------------------------------' + cCRLF +
     'Codigo.: 00000-0                                  ' + cCRLF +
     'Cliente: * CONSUMIDOR                             ' + cCRLF +
@@ -336,7 +363,7 @@ begin
     'Descricao                    Quant    Unit   Total' + cCRLF +
     '--------------------------------------------------' + cCRLF;
 
-
+{
     if qryMov_Produtos.RecordCount > 0 then begin
 
        qryMov_Produtos.FindFirst;
@@ -364,11 +391,11 @@ begin
 
 
     Texto := Texto + '--------------------------------------------------' + cCRLF;
-    Texto := Texto + 'Apto..: ' + format('%.3d', [StrToInt(lblApto.Caption)]) + ' Hora Entrada: ' + lblEntrada.Caption + '  Hora Saida: ' + edtSaida.Text + cCRLF;
+    Texto := Texto + 'Apto..: ' + format('%.3d', [StrToInt(lblApto.Caption)]) + ' Hora Entrada: ' + lblEntrada.Caption + '  Hora Saida: ' + edtHoraSaida.Text + cCRLF;
     Texto := Texto + '--------------------------------------------------' + cCRLF;
     Texto := Texto + 'Total bruto..........: ' + Format('%m', [cTotal]) + cCRLF;
     Texto := Texto + 'Total desconto (0,00): ' + Format('%m', [cDesc]) + cCRLF;
-    //Texto := Texto + 'Liquido a pagar .....: ' + lblTotal.Caption + cCRLF;
+    Texto := Texto + 'Liquido a pagar .....: ' + lblTotal.Caption + cCRLF;
     Texto := Texto + cCRLF;
     Texto := Texto + '--------------------------------------------------' + cCRLF;
     Texto := Texto + '           VCware - Sistemas de Automacao         ' + cCRLF;
@@ -389,150 +416,162 @@ begin
    finally
     CloseFile(F);
    end;
-   
+
    // =====================================================
    // =====================================================
 
    ModalResult := mrOk;
-
+}
 end;
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmFechamento.edtDescontoChange(Sender: TObject);
 begin
-   inherited;
+  if ( edtDesconto.Text <> '' ) then
+  begin
+    // edtDesconto2.Enabled := false;
+    //cDesc := (StrToCurr(edtDesconto.Text)/100) * cTotal;
+    //cTotalDesc := cTotal - cDesc;
 
-   if ( edtDesconto.Text <> '' ) then begin
+    // lblTotal.Caption := Format('%m', [cTotalDesc]);
+  end
+  else
+  begin
+    // edtDesconto2.Enabled := true;
 
-      edtDesconto2.Enabled := false;
-
-      cDesc := (StrToCurr(edtDesconto.Text)/100) * cTotal;
-      cTotalDesc := cTotal - cDesc;
-
-      //lblTotal.Caption := Format('%m', [cTotalDesc]);
-   end
-
-   else begin
-
-      edtDesconto2.Enabled := true;
-
-      cTotalDesc := 0;
-      cDesc := 0;
-
-      //lblTotal.Caption := Format('%m', [cTotal]);
-
+    //cTotalDesc := 0;
+    //cDesc := 0;
+    // lblTotal.Caption := Format('%m', [cTotal]);
    end;
-
-
 end;
 
 // -----------------------------------------------------------------------------
 
-procedure TfrmFechamento.edtDesconto2Change(Sender: TObject);
+procedure TfrmFechamento.edtPagoChange(Sender: TObject);
 begin
-  inherited;
+{
+  if ( edtDesconto2.Text <> '' ) then begin
+    edtDesconto.Enabled := false;
+    cDesc := StrToCurr(edtDesconto2.Text);
 
-     if ( edtDesconto2.Text <> '' ) then begin
-
-      edtDesconto.Enabled := false;
-
-      cDesc := StrToCurr(edtDesconto2.Text);
-
-      if cDesc > cTotal then begin
-         MessageBox(0,'O Desconto não pode ser maior que o valor Total!','Atenção!',0);
-         edtDesconto2.Text := '0';
-
-      end
-
-      else begin
-         cTotalDesc := cTotal - cDesc;
-
-         //lblTotal.Caption := Format('%m', [cTotalDesc]);
-      end;
-
+    if cDesc > cTotal then
+    begin
+       MessageBox(0,'O Desconto não pode ser maior que o valor Total!','Atenção!',0);
+       edtDesconto2.Text := '0';
+    end
+    else begin
+       cTotalDesc := cTotal - cDesc;
+       // lblTotal.Caption := Format('%m', [cTotalDesc]);
+    end;
    end
    else begin
-
       edtDesconto.Enabled := true;
-
       cTotalDesc := 0;
       cDesc := 0;
-
-      //lblTotal.Caption := Format('%m', [cTotal]);
+//      lblTotal.Caption := Format('%m', [cTotal]);
 
    end;
-
+}
 end;
 
 // -----------------------------------------------------------------------------
-
-procedure TfrmFechamento.ImprimeTicket;
-const
-  cJustif     = #27#97#51;
-  cEject      = #12;
-
-  { Tamanho da fonte }
-  c10cpi      = #18;
-  c12cpi      = #27#77;
-  c17cpi      = #15;
-  cIExpandido = #14;
-  cFExpandido = #20;
-
-  { Formatação da fonte }
-  cINegrito   = #27#71;
-  cFNegrito   = #27#72;
-  cIItalico   = #27#52;
-  cFItalico   = #27#53;
-  cCRLF       = #13#10;
-
-var
-  Texto: string;
-  F: TextFile;
-
+// Criado em 19/10/2009
+procedure TfrmFechamento.PreencheTicket;
+var txt: string;
 begin
+  //mmoTicket.Lines.Add(#27 + 'x' + #0 + #15 + cCRLF); // isso aqui vai so na impressao
 
-    Texto := #27 + 'x' + #0 + #15 +
-    cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    '           A.M. LOCACAO DE APARTAMENTOS           ' + cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'Doc/emi: 013619      10/03/2007      Dp: 8481000-2' + cCRLF +
-    'Vend...: GENIVALDO                                ' + cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'Codigo.: 88888-0                                  ' + cCRLF +
-    'Cliente: * CONSUMIDOR                             ' + cCRLF +
-    'Fantas.:                                          ' + cCRLF +
-    'Fone...:                                          ' + cCRLF +
-    'Enderec:                                          ' + cCRLF +
-    'Cidade.: ALTA FLORESTA                 UF: MT     ' + cCRLF +
-    'Veiculo: MOTO                                     ' + cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'Descricao                    Quant    Unit   Total' + cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'AGUA MINERAL                   1      2,00    2,00' + cCRLF +
-    'SUITE MOMENTO 2 HORAS          1     50,00   50,00' + cCRLF +
-    cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'Apto..: 022 Hora Entrada: 21:11  Hora Saida: 21:26' + cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    'Total bruto..........: 52,00                      ' + cCRLF +
-    'Total desconto (0,00):  0,00                      ' + cCRLF +
-    'Liquido a pagar .....: 52,00                      ' + cCRLF +
-    cCRLF +
-    '--------------------------------------------------' + cCRLF +
-    '           VCware - Sistemas de Automacao         ' + cCRLF;
+  mmoTicket.Clear;
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('           A.M. LOCACAO DE APARTAMENTOS           ');
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('Doc/emi: ' + format('%.6d', [movimento.id]) + '      ' + MidStr(movimento.Saida,1,10) + '      Dp: 0000000-0');
+  mmoTicket.Lines.Add('Vend...: *********                                ');
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('Codigo.: 00000-0                                  ');
+  mmoTicket.Lines.Add('Cliente: * CONSUMIDOR                             ');
+  mmoTicket.Lines.Add('Fantas.:                                          ');
+  mmoTicket.Lines.Add('Fone...:                                          ');
+  mmoTicket.Lines.Add('Enderec:                                          ');
+  mmoTicket.Lines.Add('Cidade.: ALTA FLORESTA                 UF: MT     ');
+  mmoTicket.Lines.Add('Veiculo: ' + movimento.Veiculo);
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('Descricao                    Quant    Unit   Total');
+  mmoTicket.Lines.Add('--------------------------------------------------');
 
-
-  AssignFile(F, 'LPT1');
-  Rewrite(F);
-  try
-    WriteLn(F, cJustif, Texto);
-    WriteLn(F, cEject);
-  finally
-    CloseFile(F);
+  qConsumo.First;
+  while not qConsumo.Eof do
+  begin
+    with qConsumo do
+    begin
+      txt := '';
+      txt := LeftStr(FieldByName('produto').Text + '                              ',31);
+      txt := txt + LeftStr(FieldByName('quantidade').Text + '       ', 4);
+      txt := txt + RightStr('       ' + Format('%0.2f', [FieldByName('valor_unitario').AsFloat]), 7) + ' ';
+      txt := txt + RightStr('       ' + Format('%0.2f',[FieldByName('total').AsFloat]), 7);
+      mmoTicket.Lines.Add(txt);
+      Next;
+    end;
   end;
 
+  txt := movimento.Tipo.nome + ' MOMENTO 2 HORAS          ' +
+         Format('%-3d',[NumMomentos]) +
+         Format('%8n',[movimento.Tipo.valor]) +
+         Format('%8n',[movimento.TotalConsumo]);
+
+  mmoTicket.Lines.Add(txt);
+
+  mmoTicket.Lines.Add('');
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('Apto..: ' + format('%.3d', [StrToInt(movimento.Apartamento)]) +
+                      ' Hora Entrada: ' + MidStr(movimento.Entrada, 12, 5) +
+                      '  Hora Saida: ' + MidStr(movimento.Saida, 12, 5));
+
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('Total bruto..........: ' + Format('%m', [movimento.TotalGeral]));
+  mmoTicket.Lines.Add('Total desconto (0,00): ' + Format('%m', [Desconto]));
+  mmoTicket.Lines.Add('Liquido a pagar .....: ' + Format('%m', [Total]));
+  mmoTicket.Lines.Add('');
+  mmoTicket.Lines.Add('--------------------------------------------------');
+  mmoTicket.Lines.Add('           CAA - Aplicativos de Automacao         ');
+end;
+
+procedure TfrmFechamento.edtValMomExit(Sender: TObject);
+begin
+  movimento.TotalMomento := StrToFloat(edtValMom.Text);
+  movimento.TotalGeral := movimento.TotalMomento + movimento.TotalConsumo;
+
+  AtualizaFormulario;
+end;
+
+procedure TfrmFechamento.edtQtdeMomExit(Sender: TObject);
+begin
+  NumMomentos := StrToInt(edtQtdeMom.Text);
+  movimento.TotalMomento := movimento.Tipo.valor * NumMomentos;
+  movimento.TotalGeral := movimento.TotalMomento + movimento.TotalConsumo;
+
+  AtualizaFormulario;
+end;
+
+procedure TfrmFechamento.AtualizaFormulario;
+begin
+  lblApto.Caption := movimento.Apartamento;
+  lblTipo.Caption := movimento.Tipo.nome;
+  lblEntrada.Caption := movimento.Entrada;
+  edtSaida.Text := movimento.Saida;
+  lblTranscorrido.Caption := movimento.Transcorrido;
+  lblVeiculo.Caption := movimento.Veiculo;
+
+  lblMomCobrado.Caption := movimento.Tipo.descricao;
+  lblValor1Mom.Caption := Format('%0.2f', [movimento.Tipo.valor]);
+  edtQtdeMom.text := inttostr(NumMomentos);
+  edtValMom.Text := Format('%0.2f', [movimento.TotalMomento]);
+  lblConsumo.Caption := 'R$ ' + Format('%0.2f', [movimento.TotalConsumo]);
+
+  edtTotal.Text := Format('%0.2f', [movimento.TotalGeral]);
+
+  PreencheTicket;
 end;
 
 end.

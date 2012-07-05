@@ -4,12 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, untProto01, StdCtrls, Buttons, BmsXPButton;
+  Dialogs, untProto01, StdCtrls, Buttons, PngBitBtn;
 
 type
   TfrmProto02 = class(TfrmProto01)
-    btnOk: TBmsXPButton;
-    btnCancelar: TBmsXPButton;
+    btnCancelar: TPngBitBtn;
+    btnOk: TPngBitBtn;
 
     procedure MudaEstadoBtnOk(lCondicao: boolean);
     procedure FormCreate(Sender: TObject);
@@ -39,36 +39,28 @@ procedure TfrmProto02.FormCreate(Sender: TObject);
 begin
    inherited;
    lBtnOkAtivo := false;
-
 end;
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmProto02.MudaEstadoBtnOk(lCondicao: boolean);
 begin
-
    if lCondicao then begin
       if ( not lBtnOkAtivo ) then begin
-         btnOk.Glyph := bmpOk;
-         btnOk.Font.Color := clWindowText;
-         // btnOk.Action := actGravar;
          btnOk.ModalResult := mrOk;
          btnOk.TabStop := true;
-
          lBtnOkAtivo := true;
+         btnOk.Enabled := true;
       end
    end
    else begin
       if ( lBtnOkAtivo ) then begin
-         btnOk.Glyph := bmpOk;
-         //btnOk.Action := actNulo;
-         btnOk.Font.Color := clGrayText;
          btnOk.ModalResult := mrNone;
          btnOk.TabStop := false;
          lBtnOkAtivo := false;
+         btnOk.Enabled := false;
       end;
    end;
 end;
-
 
 end.

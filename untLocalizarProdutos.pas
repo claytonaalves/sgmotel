@@ -5,30 +5,37 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untProto02, StdCtrls, Buttons, DB, Grids, DBGrids, ADODB,
-  ExtCtrls, BmsXPButton, XiPanel, AdvEdit;
+  ExtCtrls, PngBitBtn, ZAbstractRODataset, ZDataset;
 
 type
   TfrmLocalizarProdutos = class(TfrmProto02)
-    qryProdutos: TADOQuery;
+    grdProdutos: TDBGrid;
     dsProdutos: TDataSource;
-    XiPanel1: TXiPanel;
-    lbl04: TLabel;
+    Bevel2: TBevel;
     Shape1: TShape;
-    grdMov_Produtos: TDBGrid;
-    edtLocalizar: TEdit;
-    fldCodigo: TXiPanel;
-    XiPanel3: TXiPanel;
-    fldNome: TXiPanel;
-    AdvEdit3: TAdvEdit;
+    Shape3: TShape;
+    lblCodigo: TLabel;
+    lblQtde: TLabel;
+    lblNome: TLabel;
+    edtQtde: TEdit;
+    qProdutos: TZReadOnlyQuery;
+    Bevel1: TBevel;
+    Timer1: TTimer;
 
-    procedure qryProdutosAfterScroll(DataSet: TDataSet);
+    procedure QueryAfterScroll(DataSet: TDataSet);
+    procedure Localizar;
+
     procedure edtLocalizarChange(Sender: TObject);
     procedure edtQtdeChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure qryProdutosAfterOpen(DataSet: TDataSet);
+    procedure grdProdutosKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure grdProdutosDblClick(Sender: TObject);
 
   private
     { Private declarations }
+    BufferLocalizar: string;
 
   public
     sCod_Prod: string;
@@ -44,6 +51,8 @@ uses untDM;
 
 {$R *.dfm}
 
+{ TODO : Buscar produtos ao digitar algo dentro da grade }
+
 // -----------------------------------------------------------------------------
 
 procedure TfrmLocalizarProdutos.FormShow(Sender: TObject);
@@ -54,13 +63,11 @@ end;
 
 // -----------------------------------------------------------------------------
 
-procedure TfrmLocalizarProdutos.qryProdutosAfterScroll(DataSet: TDataSet);
+procedure TfrmLocalizarProdutos.QueryAfterScroll(DataSet: TDataSet);
 begin
-   inherited;
+  inherited;
 
-   //lblNome.Caption := grdProdutos.Fields[1].text;
-   sCod_Prod := qryProdutos.Fields[0].Text;
-
+  lblNome.Caption := qProdutos.FieldByName('nome').AsString;
 end;
 
 // -----------------------------------------------------------------------------
@@ -69,36 +76,60 @@ procedure TfrmLocalizarProdutos.edtLocalizarChange(Sender: TObject);
 begin
   inherited;
 
-   if not qryProdutos.Bof then
-      qryProdutos.FindFirst;
+//   if not qryProdutos.Bof then
+//      qryProdutos.FindFirst;
 
-   if ( edtLocalizar.Text <> '' ) then
+{   if ( edtLocalizar.Text <> '' ) then
       qryProdutos.Locate('nome',edtLocalizar.Text,[loPartialKey]);
-
+}
 end;
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmLocalizarProdutos.edtQtdeChange(Sender: TObject);
 begin
-  inherited;
-
-   MudaEstadoBtnOk( ( edtQtde.Text <> '' ) );
-
+//  inherited;
+  MudaEstadoBtnOk( ( edtQtde.Text <> '' ) );
 end;
 
-procedure TfrmLocalizarProdutos.qryProdutosAfterOpen(DataSet: TDataSet);
+procedure TfrmLocalizarProdutos.grdProdutosKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
+  if (Key in ['a'..'z', 'A'..'Z', '0'..'9']) then
+  begin
+     BufferLocalizar := BufferLocalizar + UpperCase(Key);
+     Timer1.Enabled := true;
+     Localizar;
+  end
+  else begin
+    BufferLocalizar := '';
+    Timer1.Enabled := false;
+  end;
+end;
 
-   if (DataSet.RecordCount > 0) then begin
+procedure TfrmLocalizarProdutos.FormCreate(Sender: TObject);
+begin
+  inherited;
+  BufferLocalizar := '';
+end;
 
-      with DataSet do begin
-         TNumericField(Fields[2]).DisplayFormat := '#,##0.00';
-      end;
+procedure TfrmLocalizarProdutos.Timer1Timer(Sender: TObject);
+begin
+  BufferLocalizar := '';
+  Timer1.Enabled := false;
+end;
 
-   end;
+procedure TfrmLocalizarProdutos.Localizar;
+begin
+  qProdutos.FindFirst;
+  qProdutos.Locate('nome', BufferLocalizar, [loPartialKey]);
+end;
 
+procedure TfrmLocalizarProdutos.grdProdutosDblClick(Sender: TObject);
+begin
+  inherited;
+  edtQtde.Text := '1';
+  ModalResult := mrOk;
 end;
 
 end.
